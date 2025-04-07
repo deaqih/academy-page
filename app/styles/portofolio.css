@@ -1,0 +1,351 @@
+/* Portofolio Page Styles */
+.portofolio {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  background: #FFFFFF;
+}
+
+/* Hero Section */
+.hero-section {
+  width: 1920px;
+  height: 641px;
+  padding-top: 244px;
+  padding-bottom: 48px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, rgba(32, 210, 229, 0.05) 0%, #FAFCFD 100%);
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.hero-content .subtitle {
+  font-size: 16px;
+  color: #338ABE;
+  display: block;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.hero-section h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  color: #1A202C;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.hero-section p {
+  font-family: 'Poppins';
+  font-size: 16px;
+  line-height: 1.6;
+  color: #010101;
+  max-width: 800px;
+  margin: 0;
+}
+
+/* Partners Section */
+.partners-section {
+  padding: 96px 144px;
+  text-align: center;
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 64px;
+}
+
+.section-title h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1A202C;
+  margin-bottom: 16px;
+}
+
+.red-line {
+  width: 120px;
+  height: 4px;
+  background: #FA5465;
+  margin: 0 auto;
+}
+
+.partners-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.partners-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.partners-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Agenda Section */
+.agenda-section {
+  padding: 96px 144px;
+  background: #FAFCFD;
+}
+
+.agenda-section .section-title {
+  margin-bottom: 64px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.agenda-section .section-title h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1A202C;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.agenda-section .red-line {
+  width: 120px;
+  height: 4px;
+  background: #FA5465;
+  margin: 0 auto;
+}
+
+.year-section {
+  margin-top: 48px;
+  margin-bottom: 96px;
+}
+
+.year-section h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: #1A202C;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.agenda-item {
+  background: #FFFFFF;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.agenda-image {
+  width: 100%;
+  height: 240px;
+  background: #E6F1F7;
+}
+
+.agenda-number {
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #FA5465;
+  margin: 24px 32px 16px;
+  display: block;
+}
+
+.agenda-item h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1A202C;
+  margin: 0 32px 16px;
+}
+
+.agenda-item p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4A5568;
+  margin: 0 32px 32px;
+}
+
+/* Responsive Design */
+@media (max-width: 1920px) {
+  .hero-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-section {
+    height: auto;
+    min-height: 500px;
+    padding-top: 180px;
+  }
+
+  .hero-content {
+    padding: 0 48px;
+  }
+
+  .partners-section {
+    padding: 80px 48px;
+  }
+  
+  .section-title {
+    margin-bottom: 48px;
+  }
+
+  .agenda-section {
+    padding: 80px 48px;
+  }
+
+  .agenda-grid {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 400px;
+    padding-top: 160px;
+  }
+
+  .hero-content {
+    padding: 0 24px;
+    gap: 16px;
+  }
+
+  .hero-section h1 {
+    font-size: 36px;
+  }
+
+  .partners-section {
+    padding: 60px 24px;
+  }
+
+  .section-title h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .red-line {
+    width: 100px;
+    height: 3px;
+  }
+
+  .agenda-section {
+    padding: 60px 24px;
+  }
+
+  .agenda-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .agenda-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 350px;
+    padding-top: 140px;
+  }
+
+  .hero-content {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .hero-section h1 {
+    font-size: 28px;
+  }
+
+  .hero-section p {
+    font-size: 14px;
+  }
+
+  .partners-section {
+    padding: 48px 16px;
+  }
+
+  .section-title {
+    margin-bottom: 32px;
+  }
+
+  .section-title h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .red-line {
+    width: 80px;
+    height: 3px;
+  }
+
+  .agenda-section {
+    padding: 48px 16px;
+  }
+
+  .year-section h3 {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .agenda-item {
+    border-radius: 16px;
+  }
+
+  .agenda-image {
+    height: 180px;
+  }
+
+  .agenda-number {
+    font-size: 18px;
+    margin: 20px 24px 12px;
+  }
+
+  .agenda-item h4 {
+    font-size: 20px;
+    margin: 0 24px 12px;
+  }
+
+  .agenda-item p {
+    font-size: 14px;
+    margin: 0 24px 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-section h1 {
+    font-size: 24px;
+  }
+
+  .partners-image img {
+    height: auto;
+    max-width: 90%;
+  }
+
+  .agenda-image {
+    height: 160px;
+  }
+} 
