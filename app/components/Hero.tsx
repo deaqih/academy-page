@@ -20,7 +20,7 @@ export default function Hero() {
             untuk mengembangkan diri dan meningkatkan
             kompetensi di berbagai bidang.
           </p>
-          <Link to="/tentang-ikram" className="btn btn-outline-light">
+          <Link to="/portofolio" className="btn btn-outline-light">
             <span>Tentang Ikram</span>
             <svg className="nav-arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round"/>
