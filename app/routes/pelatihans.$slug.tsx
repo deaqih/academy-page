@@ -64,33 +64,20 @@ export default function TrainingDetail() {
     <div className="pelatihan-detail">
       <Navbar />
       
-      <div className="breadcrumb">
-        <div className="breadcrumb-container">
-          <ul className="breadcrumb-list">
-            <li className="breadcrumb-item">
-              <Link to="/pelatihan">Pelatihan</Link>
-              <span className="breadcrumb-separator">/</span>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to="/pelatihan">Training</Link>
-              <span className="breadcrumb-separator">/</span>
-            </li>
-            <li className="breadcrumb-item">Detail Pelatihan</li>
-          </ul>
+      <section className="training-hero">
+        <div className="training-hero-content">
+          <div className="training-breadcrumb">
+            <Link to="/pelatihan">Pelatihan</Link>
+            <span className="training-breadcrumb-separator">/</span>
+            <Link to="/pelatihan">Training</Link>
+            <span className="training-breadcrumb-separator">/</span>
+            <span>Detail Pelatihan</span>
+          </div>
+          <h1 className="training-hero-title">{training.title}</h1>
         </div>
-      </div>
+      </section>
 
       <div className="training-detail">
-        <div className="training-header">
-          <h1 className="training-title">{training.title}</h1>
-          
-          <div className="detail-tabs">
-            <div className="tab-item active">Overview</div>
-            <div className="tab-item">Curriculum</div>
-            <div className="tab-item">Instructor</div>
-          </div>
-        </div>
-
         <div className="training-content">
           <div className="main-content">
             <div className="instructor-section">

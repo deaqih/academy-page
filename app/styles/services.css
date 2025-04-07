@@ -264,72 +264,277 @@
   object-fit: cover;
 }
 
-/* Responsive Design */
+/* Updated Responsive Design */
 @media (max-width: 1400px) {
+  .services,
+  .expert-staff,
+  .articles {
+    padding: 72px 48px;
+  }
+
   .services-highlight {
-    padding: 72px;
+    padding: 72px 48px;
     height: auto;
   }
 
   .highlight-content {
-    gap: 72px;
+    gap: 48px;
   }
 
-  .highlight-text,
+  .highlight-text {
+    width: 100%;
+    height: auto;
+  }
+
   .highlight-image {
     width: 100%;
     height: auto;
+    min-height: 320px;
+  }
+
+  .articles-grid {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .services-grid,
+  .programs-grid,
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .expert-staff-grid {
+    gap: 32px;
+  }
+
+  .expert-staff-info h4 {
+    font-size: 28px;
+  }
+
+  .article-card img {
+    height: 200px;
   }
 }
 
 @media (max-width: 992px) {
+  .services,
+  .expert-staff,
+  .articles {
+    padding: 48px 24px;
+  }
+
   .services-highlight {
     padding: 48px 24px;
   }
 
   .highlight-content {
     flex-direction: column;
-    gap: 48px;
   }
 
   .highlight-text {
     text-align: center;
+    padding: 0 24px;
   }
 
-  .highlight-button {
+  .highlight-text h2 {
+    font-size: 36px;
+  }
+
+  .expert-staff-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .expert-staff-image {
+    max-width: 480px;
     margin: 0 auto;
   }
-}
 
-@media (max-width: 1200px) {
-  .services {
-    padding: 72px 24px;
-  }
-
-  .services-grid,
-  .programs-grid {
-    gap: 24px;
+  .articles {
+    height: auto;
+    border-radius: 48px 48px 0 0;
   }
 }
 
 @media (max-width: 768px) {
-  .services {
-    padding: 48px 16px;
-  }
-
-  .services-header h2 {
-    font-size: 2rem;
-  }
-
   .services-grid,
-  .programs-grid {
+  .programs-grid,
+  .articles-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .programs-header {
-    flex-direction: column;
-    gap: 24px;
-    text-align: center;
+  .services-header h2,
+  .programs-header h2,
+  .expert-staff-header h2 {
+    font-size: 28px;
+  }
+
+  .service-card,
+  .program-card {
+    padding: 20px;
+  }
+
+  .highlight-text h2 {
+    font-size: 28px;
+    padding-left: 16px;
+  }
+
+  .highlight-text h2::before {
+    width: 3px;
+  }
+
+  .expert-staff-info h4 {
+    font-size: 24px;
+  }
+
+  .article-card {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  .article-card img {
+    height: 180px;
+  }
+
+  .article-content {
+    padding: 16px;
+  }
+
+  .article-content h3 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .services,
+  .expert-staff,
+  .articles {
+    padding: 40px 16px;
+  }
+
+  .services-header,
+  .programs-header,
+  .expert-staff-header {
+    margin-bottom: 32px;
+  }
+
+  .services-header h2,
+  .programs-header h2,
+  .expert-staff-header h2 {
+    font-size: 24px;
+  }
+
+  .service-card h3,
+  .program-card h3 {
+    font-size: 18px;
+  }
+
+  .highlight-text h2 {
+    font-size: 24px;
+  }
+
+  .highlight-text p {
+    font-size: 14px;
+  }
+
+  .expert-staff-image {
+    max-width: 100%;
+    height: 240px;
+  }
+
+  .expert-staff-info p {
+    font-size: 14px;
+  }
+
+  .article-card {
+    max-width: 100%;
+  }
+
+  .article-card img {
+    height: 160px;
+  }
+
+  .articles {
+    border-radius: 32px 32px 0 0;
+  }
+
+  .button.outline-white {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Additional responsive improvements */
+@media (hover: none) {
+  .service-card:hover,
+  .program-card:hover,
+  .article-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Fix for notched devices */
+@supports (padding: max(0px)) {
+  .services,
+  .expert-staff,
+  .articles {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  .article-author,
+  .programs-nav button {
+    min-height: 44px;
+  }
+
+  .button {
+    padding: 12px 20px;
+    min-height: 44px;
+  }
+}
+
+/* Container width adjustments */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 12px;
   }
 }
 
@@ -443,45 +648,6 @@
 .expert-staff-signature span {
   font-size: 16px;
   color: #4A5568;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .expert-staff {
-    padding: 72px 24px;
-  }
-
-  .expert-staff-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .expert-staff-image {
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .expert-staff-info {
-    text-align: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .expert-staff-header h2 {
-    font-size: 36px;
-  }
-
-  .expert-staff-content h3 {
-    font-size: 28px;
-  }
-
-  .expert-staff-info h4 {
-    font-size: 24px;
-  }
-
-  .expert-staff-signature h5 {
-    font-size: 20px;
-  }
 }
 
 /* Articles Section */
@@ -616,273 +782,6 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-}
-
-/* Responsive Design for Articles */
-@media (max-width: 1200px) {
-  .articles {
-    padding: 72px 24px 0;
-    height: auto;
-  }
-  
-  .articles-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-  
-  .partners {
-    margin-top: -72px;
-    padding: 24px 72px 72px;
-  }
-}
-
-@media (max-width: 768px) {
-  .articles {
-    padding: 48px 16px 0;
-  }
-  
-  .articles-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .articles-header h2 {
-    font-size: 28px;
-  }
-
-  .article-content h3 {
-    font-size: 18px;
-  }
-  
-  .partners {
-    margin-top: -48px;
-    padding: 16px 24px 48px;
-  }
-}
-
-/* Mobile Responsive Design */
-@media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
-  }
-
-  /* Services Section Mobile */
-  .services {
-    padding: 48px 0;
-  }
-
-  .services-header {
-    margin-bottom: 32px;
-  }
-
-  .services-header h2 {
-    font-size: 28px;
-    padding: 0 16px;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 16px;
-  }
-
-  .service-card {
-    padding: 24px;
-  }
-
-  /* Programs Section Mobile */
-  .programs {
-    margin-top: 48px;
-    padding: 0 16px;
-  }
-
-  .programs-header {
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  .programs-header h2 {
-    font-size: 24px;
-  }
-
-  .programs-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .program-card img {
-    height: 180px;
-  }
-
-  /* Highlight Section Mobile */
-  .services-highlight {
-    padding: 48px 16px;
-    height: auto;
-  }
-
-  .highlight-content {
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .highlight-text {
-    width: 100%;
-    height: auto;
-    gap: 16px;
-    text-align: center;
-  }
-
-  .highlight-text h2 {
-    font-size: 28px;
-  }
-
-  .highlight-text p {
-    font-size: 16px;
-  }
-
-  .highlight-image {
-    width: 100%;
-    height: 240px;
-    border-radius: 16px;
-  }
-
-  /* Expert Staff Section Mobile */
-  .expert-staff {
-    padding: 48px 16px;
-  }
-
-  .expert-staff-header {
-    margin-bottom: 32px;
-  }
-
-  .expert-staff-header h2 {
-    font-size: 28px;
-  }
-
-  .expert-staff-content h3 {
-    font-size: 24px;
-    margin-bottom: 32px;
-  }
-
-  .expert-staff-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .expert-staff-image {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .expert-staff-info {
-    padding: 24px 0;
-    text-align: center;
-  }
-
-  .expert-staff-info h4 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-
-  .expert-staff-info p {
-    font-size: 16px;
-    margin-bottom: 24px;
-  }
-
-  .expert-staff-signature {
-    margin-top: 32px;
-  }
-
-  /* Articles Section Mobile */
-  .articles {
-    padding: 48px 16px;
-    height: auto;
-    border-top-left-radius: 48px;
-    border-top-right-radius: 48px;
-  }
-
-  .articles-header {
-    margin-bottom: 32px;
-  }
-
-  .articles-header h2 {
-    font-size: 28px;
-  }
-
-  .articles-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
-  .article-card {
-    border-radius: 16px;
-  }
-
-  .article-card img {
-    height: 200px;
-  }
-
-  .article-content {
-    padding: 16px;
-  }
-
-  .article-content h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-
-  .articles-footer {
-    margin-top: 32px;
-  }
-
-  .button.outline-white {
-    width: 100%;
-    max-width: 280px;
-  }
-}
-
-/* Tablet Responsive Design */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    padding: 0 24px;
-  }
-
-  .services-grid,
-  .programs-grid,
-  .articles-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .highlight-content {
-    gap: 48px;
-  }
-
-  .highlight-text {
-    width: 100%;
-  }
-
-  .highlight-image {
-    width: 100%;
-    height: 320px;
-  }
-
-  .expert-staff-grid {
-    grid-template-columns: 1fr;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
-  .expert-staff-image {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-
-  .expert-staff-info {
-    text-align: center;
-  }
 }
 
 /* Additional Improvements */
