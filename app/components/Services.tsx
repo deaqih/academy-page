@@ -1,4 +1,4 @@
-import type { Article } from "~/utils/supabase.server";
+import type { Article, TrainingProgram } from "~/utils/supabase.server";
 import styles from "~/styles/services.css";
 import { Link } from "@remix-run/react";
 
@@ -6,9 +6,11 @@ export const links = () => [{ rel: "stylesheet", href: styles }];
 
 interface ServicesProps {
   articles: Article[];
+  trainings: TrainingProgram[];
+  totalCount: number;
 }
 
-export default function Services({ articles }: ServicesProps) {
+export default function Services({ articles, trainings, totalCount }: ServicesProps) {
   return (
     <>
       <section className="services">
@@ -63,47 +65,38 @@ export default function Services({ articles }: ServicesProps) {
           <div className="programs">
             <div className="programs-header">
               <h2>Program Pelatihan Kami</h2>
-              <div className="programs-nav">
-                <button className="prev-btn" aria-label="Previous">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-                <button className="next-btn" aria-label="Next">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
+              <Link to="/pelatihan" className="all-programs-btn">
+                Semua Pelatihan
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
             </div>
 
             <div className="programs-grid">
-              <div className="program-card">
-                <img src="/images/public-speaking.png" alt="Public Speaking" />
-                <div className="program-content">
-                  <span className="program-tag">Training</span>
-                  <h3>Public Speaking</h3>
-                  <p>Meningkatkan kemampuan berbicara di depan umum dengan teknik yang efektif.</p>
-                </div>
-              </div>
-
-              <div className="program-card">
-                <img src="/images/public-speaking.png" alt="Leadership" />
-                <div className="program-content">
-                  <span className="program-tag">Training</span>
-                  <h3>Leadership</h3>
-                  <p>Mengembangkan kemampuan kepemimpinan untuk mencapai tujuan organisasi.</p>
-                </div>
-              </div>
-
-              <div className="program-card">
-                <img src="/images/public-speaking.png" alt="Followership" />
-                <div className="program-content">
-                  <span className="program-tag">Training</span>
-                  <h3>Followership</h3>
-                  <p>Membangun tim yang solid dengan pemahaman peran dan tanggung jawab.</p>
-                </div>
-              </div>
+              {trainings && trainings.length > 0 ? (
+                trainings.map((training) => (
+                  <Link 
+                    key={training.id} 
+                    to={`/pelatihans/${training.slug}`}
+                    className="program-card"
+                  >
+                    <img src={training.image_url} alt={training.title} />
+                    <div className="program-content">
+                      <span className="program-tag">{training.category}</span>
+                      <h3>{training.title}</h3>
+                      <div className="program-details">
+                        <span className="program-level">{training.level}</span>
+                        <span className="program-duration">{training.duration}</span>
+                        <span className="program-language">{training.language}</span>
+                      </div>
+                      <p className="program-description">{training.description}</p>
+                    </div>
+                  </Link>
+                ))
+              ) : (
+                <div className="no-programs">Tidak ada program pelatihan tersedia</div>
+              )}
             </div>
           </div>
         </div>

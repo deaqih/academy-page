@@ -1,7 +1,6 @@
 /* Artikel Page Styles */
 .artikel {
   width: 100%;
-  max-width: 1920px;
   margin: 0 auto;
   background: #FFFFFF;
 }
@@ -14,7 +13,6 @@
 
 /* Hero Section */
 .artikel-hero {
-  width: 1920px;
   height: 472px;
   padding-top: 244px;
   padding-bottom: 48px;

@@ -1,14 +1,12 @@
 /* About Page Styles */
 .about {
   width: 100%;
-  max-width: 1920px;
   margin: 0 auto;
   background: #FFFFFF;
 }
 
 /* Hero Section */
 .about-hero {
-  width: 1920px;
   height: 641px;
   padding-top: 244px;
   padding-bottom: 48px;
@@ -46,7 +44,6 @@
 }
 
 .about-content .container {
-  max-width: 1920px;
   margin: 0 auto;
   padding: 0 144px;
 }
@@ -125,7 +122,6 @@
 
 /* Values Section */
 .values {
-  width: 1920px;
   height: 1673px;
   padding: 96px 0;
   margin: 0 auto;
@@ -135,7 +131,6 @@
 }
 
 .values-nav {
-  width: 1920px;
   height: 88px;
   padding: 32px 0;
   background: #005C98;
@@ -336,7 +331,6 @@ html {
 
 /* Quote Section */
 .quote {
-  width: 1920px;
   height: 394px;
   padding: 96px 0;
   background: #E6F1F7;
@@ -526,7 +520,6 @@ html {
 
 /* Programs Section */
 .programs {
-  width: 1920px;
   height: 1721px;
   padding: 96px 0;
   background: #E6F1F7;

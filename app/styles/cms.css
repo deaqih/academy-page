@@ -1,0 +1,130 @@
+.cms-container {
+  min-height: 100vh;
+  background-color: #F7FAFC;
+}
+
+.cms-header {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cms-header h1 {
+  font-size: 1.5rem;
+  color: #2D3748;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info span {
+  color: #4A5568;
+}
+
+.user-info button {
+  background: #E53E3E;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.user-info button:hover {
+  background: #C53030;
+}
+
+.cms-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cms-section {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.25rem;
+  color: #2D3748;
+}
+
+.add-button {
+  background: #0056B3;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.add-button:hover {
+  background: #004494;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+th {
+  background: #F7FAFC;
+  font-weight: 600;
+  color: #4A5568;
+}
+
+td {
+  color: #2D3748;
+}
+
+td a {
+  color: #0056B3;
+  text-decoration: none;
+  margin-right: 1rem;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+td button {
+  background: #E53E3E;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+td button:hover {
+  background: #C53030;
+} 

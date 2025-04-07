@@ -30,8 +30,8 @@ export default function Sejarah() {
                 <div className="timeline-image">
                   <img src="/images/followership.png" alt="Timeline 2023" />
                 </div>
-                <h3>Awal Perjalanan</h3>
-                <p>Ikram Academy didirikan dengan visi menjadi lembaga pelatihan terkemuka yang fokus pada pengembangan SDM berkualitas melalui pendekatan inovatif dan teknologi modern.</p>
+                <h3>Awal yang Kuat</h3>
+                <p>IKRAM Academy Indonesia memulai perjalanan dengan mendapatkan klien pertama, Masyarakat Metrologi Indonesia (MMI), dan proyek bersama Kementerian Dalam Negeri ini menandai fondasi yang solid dalam membangun reputasi sebagai penyedia layanan yang dapat diandalkan.</p>
               </div>
             </div>
 
@@ -42,8 +42,8 @@ export default function Sejarah() {
                 <div className="timeline-image">
                   <img src="/images/followership.png" alt="Timeline 2024" />
                 </div>
-                <h3>Ekspansi Program</h3>
-                <p>Mengembangkan berbagai program pelatihan baru dan menjalin kerjasama strategis dengan berbagai institusi pendidikan dan industri untuk memperluas jangkauan layanan.</p>
+                <h3>Pertumbuhan dan Kepercayaan</h3>
+                <p>IKRAM menunjukan pertumbuhan pesat dengan mendapatkan kepercayaan dari Persada untuk bekerja sama dengan Bank Indonesia. Selain itu, penambahan klien baru, Garudafood mencerminkan kepercayaan yang meningkat dari berbagai sektor.</p>
               </div>
             </div>
 
@@ -54,8 +54,8 @@ export default function Sejarah() {
                 <div className="timeline-image">
                   <img src="/images/followership.png" alt="Timeline 2025" />
                 </div>
-                <h3>Transformasi Digital</h3>
-                <p>Melakukan transformasi digital menyeluruh dengan mengintegrasikan teknologi terkini dalam setiap program pelatihan untuk memberikan pengalaman belajar yang lebih efektif.</p>
+                <h3>Konsistensi dan Keberlanjutan</h3>
+                <p>IKRAM tetap dipercaya oleh Garudafood untuk proyek Champion Trainee dan mendapatkan kepercayaan dari Bank Indonesia untuk proyek yang lebih besar. Ini menunjukan bahwa IKRAM terus berkembang dan memberikan solusi inovatif.</p>
               </div>
             </div>
           </div>
