@@ -34,8 +34,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
       .from("articles")
       .select("id, title, image_url, author, publish_date, slug")
       .neq("slug", slug)
-      .order('created_at', { ascending: false })
-      .limit(5);
+      .limit(3);
 
     console.log("Related articles:", relatedArticles);
     console.log("Related error:", relatedError);
