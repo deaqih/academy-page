@@ -713,9 +713,7 @@
 
 /* Expert Staff Section */
 .expert-staff {
-  width: 100%;
-  margin: 0 auto;
-  padding: 96px 144px;
+  padding: 80px 0;
   background: #FFFFFF;
 }
 
@@ -738,7 +736,7 @@
 }
 
 .expert-staff-content {
-  max-width: 1152px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -767,16 +765,8 @@
 .expert-staff-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 64px;
+  gap: 48px;
   align-items: center;
-}
-
-.expert-staff-image {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #E6F1F7;
 }
 
 .expert-staff-image img {
@@ -1173,4 +1163,201 @@
   border: 1px solid #FED7D7;
   border-radius: 8px;
   font-weight: 500;
+}
+
+/* Mobile Specific Improvements */
+@media (max-width: 768px) {
+  .services {
+    padding: 60px 24px;
+  }
+
+  .services-header h2 {
+    font-size: 28px;
+    padding: 0 16px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .service-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Programs Section Mobile */
+  .programs {
+    padding: 0 24px;
+  }
+
+  .programs-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 0 16px;
+  }
+
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .program-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Expert Staff Section Mobile */
+  .expert-staff {
+    padding: 60px 24px;
+  }
+
+  .expert-staff-header h2 {
+    font-size: 28px;
+    padding: 0 16px;
+  }
+
+  .expert-staff-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 0 16px;
+  }
+
+  .expert-staff-image {
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .expert-staff-info {
+    text-align: left;
+    padding: 0 16px;
+  }
+
+  .expert-staff-info h4 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .expert-staff-info p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .expert-staff-signature {
+    border-top: 1px solid #E2E8F0;
+    padding-top: 24px;
+    margin-top: 24px;
+  }
+
+  /* Articles Section Mobile */
+  .articles {
+    padding: 60px 24px;
+    height: auto;
+    border-radius: 48px 48px 0 0;
+  }
+
+  .articles-header h2 {
+    font-size: 28px;
+    padding: 0 16px;
+  }
+
+  .articles-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .article-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .article-content {
+    padding: 20px;
+  }
+
+  .article-content h3 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 576px) {
+  .services,
+  .expert-staff,
+  .articles {
+    padding: 48px 16px;
+  }
+
+  .services-header h2,
+  .expert-staff-header h2,
+  .articles-header h2 {
+    font-size: 24px;
+  }
+
+  .service-card,
+  .program-card,
+  .article-card {
+    border-radius: 12px;
+  }
+
+  .expert-staff-info h4 {
+    font-size: 22px;
+  }
+
+  .expert-staff-info p {
+    font-size: 15px;
+  }
+
+  .article-content {
+    padding: 16px;
+  }
+
+  .articles-footer {
+    padding: 0 16px;
+  }
+
+  .button.outline-white {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Touch Device Improvements */
+@media (hover: none) and (pointer: coarse) {
+  .service-card,
+  .program-card,
+  .article-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .button,
+  .all-programs-btn {
+    min-height: 44px;
+    padding: 12px 20px;
+  }
+
+  .article-author {
+    min-height: 44px;
+  }
+}
+
+/* Safe Area Insets for Notched Devices */
+@supports (padding: env(safe-area-inset-top)) {
+  @media (max-width: 768px) {
+    .services,
+    .expert-staff,
+    .articles {
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
+    }
+  }
 } 
