@@ -119,11 +119,16 @@ export default function About() {
               <h4>Visi Ikram</h4>
               <div className="visi-card">
                 <div className="card-icon">
-                  <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="32" cy="32" r="32" fill="#E6F3FF"/>
-                    <path d="M44 24L28 40L20 32" stroke="#00569E" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M32 16C24.268 16 18 22.268 18 30C18 37.732 24.268 44 32 44C39.732 44 46 37.732 46 30" stroke="#00569E" strokeWidth="3" strokeLinecap="round"/>
-                  </svg>
+                  <img 
+                    src="/images/icon/visi.png" 
+                    alt="Check Circle Icon" 
+                    width="64" 
+                    height="64"
+                    style={{
+                      borderRadius: '50%',
+                      objectFit: 'cover'
+                    }}
+                  />
                 </div>
                   <h5>Kualitas unggul dan berdaya saing</h5>
                   <p>Mewujudkan pendidikan yang berkualitas guna mencetak generasi mulia, unggul, berdaya saing dan berdampak bagi masyarakat</p>
@@ -135,11 +140,16 @@ export default function About() {
               <div className="misi-grid">
                 <div className="misi-card">
                   <div className="card-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                      <path d="M24 14V34M24 14L18 20M24 14L30 20" stroke="#00569E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M16 26L24 34L32 26" stroke="#00569E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <img 
+                      src="/images/icon/misi-1.png" 
+                      alt="Check Circle Icon" 
+                      width="64" 
+                      height="64"
+                      style={{
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
                   <h5>Menyediakan Pelatihan Inovatif</h5>
                   <p>Menyelenggarakan pelatihan pendidikan, konsultasi, dan asesmen yang inovatif, mudah diakses, dan inspiratif</p>
@@ -147,11 +157,16 @@ export default function About() {
 
                 <div className="misi-card">
                   <div className="card-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                      <path d="M24 32C28.4183 32 32 28.4183 32 24C32 19.5817 28.4183 16 24 16C19.5817 16 16 19.5817 16 24C16 28.4183 19.5817 32 24 32Z" stroke="#00569E" strokeWidth="2"/>
-                      <path d="M24 20V28M20 24H28" stroke="#00569E" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
+                    <img 
+                      src="/images/icon/misi-2.png" 
+                      alt="Check Circle Icon" 
+                      width="64" 
+                      height="64"
+                      style={{
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
                   <h5>Mencetak Individu Produktif</h5>
                   <p>Membantu mencetak individu yang produktif, kompeten, dan siap bersaing di dunia industri</p>
@@ -159,22 +174,32 @@ export default function About() {
 
                 <div className="misi-card">
                   <div className="card-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                      <path d="M32 18L24 26M24 26L16 18M24 26V34" stroke="#00569E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M16 30H32" stroke="#00569E" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
+                    <img 
+                      src="/images/icon/misi-3.png" 
+                      alt="Check Circle Icon" 
+                      width="64" 
+                      height="64"
+                      style={{
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
                   <h5>Daya Juang dan Pemikiran Kritis</h5>
                   <p>Membangun ekosistem pendidikan yang mendorong daya juang, pemikiran kritis, serta inovasi</p>
                 </div>
                 <div className="misi-card">
                   <div className="card-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                      <path d="M24 32C28.4183 32 32 28.4183 32 24C32 19.5817 28.4183 16 24 16C19.5817 16 16 19.5817 16 24C16 28.4183 19.5817 32 24 32Z" stroke="#00569E" strokeWidth="2"/>
-                      <path d="M24 20L24 28M24 28L28 24M24 28L20 24" stroke="#00569E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <img 
+                      src="/images/icon/misi-4.png" 
+                      alt="Check Circle Icon" 
+                      width="64" 
+                      height="64"
+                      style={{
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
                   <h5>Karakter Profesional dan Berintegritas</h5>
                   <p>Mengembangkan program yang membentuk karakter mulia, unggul, profesional, dan berintegritas</p>
@@ -182,11 +207,16 @@ export default function About() {
 
                 <div className="misi-card">
                   <div className="card-icon">
-                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                      <path d="M16 24H32M32 24L26 18M32 24L26 30" stroke="#00569E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M20 16V32" stroke="#00569E" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
+                    <img 
+                      src="/images/icon/misi-5.png" 
+                      alt="Check Circle Icon" 
+                      width="64" 
+                      height="64"
+                      style={{
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
                   <h5>Kolaborasi Pendidikan yang Solutif</h5>
                   <p>Berkolaborasi untuk menciptakan solusi pendidikan yang berdampak luas</p>
@@ -201,8 +231,8 @@ export default function About() {
       <section className="quote">
         <div className="container">
           <blockquote>
-            <p>"Lorem ipsum dolor sit amet consectuture Lorem ipsum dolor sit amet consectuture Lorem ipsum dolor sit amet consectuture Lorem ipsum dolor sit amet consectuture."</p>
-            <cite>(John Doe, 2025)</cite>
+            <p>"The future belongs to those who learn more skills and combine them in creative ways."</p>
+            <cite>(Robert Greene, 2012)</cite>
           </blockquote>
         </div>
       </section>

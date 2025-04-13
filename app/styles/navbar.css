@@ -24,6 +24,7 @@
   position: relative;
   display: flex;
   justify-content: center;
+  margin-bottom: 20rem;
 }
 
 .navbar-container {
@@ -53,7 +54,7 @@
 
 .nav-links a {
   text-decoration: none;
-  color: #4A5568;
+  color: #005C98;
   font-size: 0.9rem;
   font-weight: 500;
   font-family: var(--font-family);
@@ -94,7 +95,48 @@
 .mobile-menu-button svg {
   width: 24px;
   height: 24px;
-  color: #4A5568;
+  color: #005C98;
+}
+
+.btn.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--Blue-120, #00497A);
+  border-radius: 100px;
+  color: var(--Blue-120, #00497A);
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn.btn-outline:hover {
+  background: var(--Blue-120, #00497A);
+  color: white;
+}
+
+.btn.btn-outline svg {
+  transition: all 0.3s ease;
+}
+
+.btn.btn-outline:hover svg {
+  color: white;
+}
+
+.mobile-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--Blue-120, #00497A);
+  color: white;
+  border-radius: 100px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.mobile-contact svg {
+  color: white;
 }
 
 /* Tablet */

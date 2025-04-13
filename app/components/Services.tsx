@@ -86,9 +86,9 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
                       <span className="program-tag">{training.category}</span>
                       <h3>{training.title}</h3>
                       <div className="program-details">
-                        <span className="program-level">{training.level}</span>
+                        {/* <span className="program-level">{training.level}</span>
                         <span className="program-duration">{training.duration}</span>
-                        <span className="program-language">{training.language}</span>
+                        <span className="program-language">{training.language}</span> */}
                       </div>
                       <p className="program-description">{training.description}</p>
                     </div>
@@ -147,14 +147,14 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
               <div className="expert-staff-info">
                 <h4>Menjadi Mitra Pilihan Terbaik Anda!</h4>
                 <p>
-                  Ikram Academy Indonesia di tahun 2025 bermimpi menjadi mitra 
-                  terpercaya dan terbaik di Regional. Untuk itu, kami mendorong seluruh 
-                  Tenaga Ahli kamIkram Academy Indonesia bercita-cita menjadi mitra 
-                  terpercaya dan terbaik di tingkat regional pada tahun 2025. Untuk 
-                  mewujudkan visi ini, kami mendorong seluruh tenaga ahli—termasuk 
-                  coach, trainer, konsultan, asesor, dan dosen—untuk terus meningkatkan 
-                  kompetensi mereka melalui pendidikan berjenjang serta sertifikasi 
-                  keahlian berskala nasional maupun internasional
+                  ​Kami berkomitmen menjadi mitra terpercaya dalam mewujudkan 
+                  pendidikan berkualitas yang menghasilkan individu unggul, berdaya 
+                  saing, dan berdampak positif bagi masyarakat. Melalui pelatihan, 
+                  konsultasi, dan asesmen inovatif yang mudah diakses, kami membangun 
+                  ekosistem pendidikan yang mendorong daya juang, pemikiran kritis, 
+                  serta inovasi. Program kami dirancang untuk membentuk karakter 
+                  mulia, profesional, dan berintegritas, mempersiapkan individu 
+                  kompeten yang siap bersaing di dunia industri.
                 </p>
                 <div className="expert-staff-signature">
                   <h5>Muhamad Roby Ashari</h5>

@@ -7,12 +7,8 @@ import styles from "~/styles/cms.css";
 export const links = () => [{ rel: "stylesheet", href: styles }];
 
 export async function loader({ request }: LoaderFunctionArgs) {
-  const { data: { session } } = await supabase.auth.getSession();
 
-  if (!session) {
-    return redirect("/login");
-  }
-
+  
   const [articles, trainings] = await Promise.all([
     supabase.from("articles").select("*").order("created_at", { ascending: false }),
     supabase.from("trainings").select("*").order("created_at", { ascending: false })
@@ -20,8 +16,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   return json({
     articles: articles.data || [],
-    trainings: trainings.data || [],
-    user: session.user
+    trainings: trainings.data || []
   });
 }
 
@@ -34,12 +29,6 @@ export default function CMS() {
     <div className="cms-container">
       <header className="cms-header">
         <h1>CMS Dashboard</h1>
-        <div className="user-info">
-          <span>{user.email}</span>
-          <Form method="post" action="/logout">
-            <button type="submit">Logout</button>
-          </Form>
-        </div>
       </header>
 
       <div className="cms-content">

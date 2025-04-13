@@ -5,8 +5,8 @@ import Services from "~/components/Services";
 import Footer from "~/components/Footer";
 import { links as navbarLinks } from "~/components/Navbar";
 import { links as heroLinks } from "~/components/Hero";
-import { json } from "@remix-run/node";
-import type { LoaderFunction } from "@remix-run/node";
+import { json, redirect } from "@remix-run/node";
+import type { LoaderFunction, ActionFunction } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { supabase, type Article, type TrainingProgram } from "~/utils/supabase.server";
 
@@ -19,7 +19,41 @@ export const meta: MetaFunction = () => {
 
 export const links = () => [...navbarLinks(), ...heroLinks()];
 
-export const loader: LoaderFunction = async () => {
+export interface Banner {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+}
+
+export type LoaderData = {
+  articles: Article[];
+  trainings: TrainingProgram[];
+  totalCount: number;
+  currentBanner: number;
+  banners: Banner[];
+};
+
+const BANNERS: Banner[] = [
+  {
+    id: 1,
+    title: "Tingkatkan **Keahlian**, Wujudkan **Impian**!",
+    description: "Ikram Academy hadir sebagai tempat pelatihan terbaik untuk membantumu meningkatkan keahlian dan mewujudkan impian. Dengan program pembelajaran yang terarah dan instruktur berpengalaman, kami siap mendampingi setiap langkahmu menuju masa depan yang lebih cerah.",
+    image: "/images/hero-image.png"
+  },
+  {
+    id: 2,
+    title: "Unggul dalam Akhlak, Produktif dalam ilmu pengetahuan dan teknologi",
+    description: "",
+    image: "/images/hero-image.png"
+  }
+];
+
+export const loader: LoaderFunction = async ({ request }) => {
+  // Get current banner index from URL
+  const url = new URL(request.url);
+  const currentBanner = parseInt(url.searchParams.get("banner") || "0");
+
   // Fetch articles
   const { data: articles, error: articlesError } = await supabase
     .from('articles')
@@ -55,24 +89,37 @@ export const loader: LoaderFunction = async () => {
     throw new Error('Error fetching training programs');
   }
 
-  return json({ 
+  return json<LoaderData>({ 
     articles,
     trainings: trainings || [],
-    totalCount: count || 0
+    totalCount: count || 0,
+    currentBanner,
+    banners: BANNERS
   });
 };
 
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const action = formData.get("action");
+  const currentBanner = parseInt(formData.get("currentBanner") as string);
+
+  let nextBanner;
+  if (action === "next") {
+    nextBanner = (currentBanner + 1) % BANNERS.length;
+  } else {
+    nextBanner = (currentBanner - 1 + BANNERS.length) % BANNERS.length;
+  }
+
+  return redirect(`/?banner=${nextBanner}`);
+};
+
 export default function Index() {
-  const { articles, trainings, totalCount } = useLoaderData<{ 
-    articles: Article[],
-    trainings: TrainingProgram[],
-    totalCount: number
-  }>();
+  const { articles, trainings, totalCount, currentBanner, banners } = useLoaderData<LoaderData>();
   
   return (
     <main>
       <Navbar />
-      <Hero />
+      <Hero currentBanner={currentBanner} banners={banners} />
       <Services articles={articles} trainings={trainings} totalCount={totalCount} />
       <Footer />
     </main>

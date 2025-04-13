@@ -4,6 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import styles from "~/styles/pelatihan-detail.css";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
+import { useState } from "react";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -27,6 +28,7 @@ type Training = {
     title: string;
     duration: string;
   }[];
+  image: string;
 };
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -58,7 +60,55 @@ export async function loader({ params }: LoaderFunctionArgs) {
 }
 
 export default function TrainingDetail() {
+  const [activeTab, setActiveTab] = useState("overview");
   const { training } = useLoaderData<typeof loader>();
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "overview":
+        return (
+          <div className="overview-section">
+            <div className="about-section">
+              <h2 className="section-title">About</h2>
+              <p>{training.description}</p>
+            </div>
+          </div>
+        );
+      case "curriculum":
+        return (
+          <div className="curriculum-section">
+            <h2 className="section-title">Curriculum</h2>
+            {training.curriculum.map((item: { title: string; duration: string }, index: number) => (
+              <div key={index} className="curriculum-item">
+                <div className="curriculum-header">
+                  <h3 className="curriculum-title">{item.title}</h3>
+                  <span className="curriculum-meta">{item.duration}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+      case "instructor":
+        return (
+          <div className="instructor-section">
+            <h2 className="section-title">Instructor</h2>
+            <div className="instructor-info">
+              <img 
+                src={training.instructor.avatar} 
+                alt={training.instructor.name}
+                className="instructor-avatar"
+              />
+              <div>
+                <h3 className="instructor-name">{training.instructor.name}</h3>
+                <p className="instructor-title">{training.instructor.title}</p>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="pelatihan-detail">
@@ -78,42 +128,38 @@ export default function TrainingDetail() {
       </section>
 
       <div className="training-detail">
+        <div className="training-tabs">
+          <button 
+            className={`tab-button ${activeTab === "overview" ? "active" : ""}`}
+            onClick={() => setActiveTab("overview")}
+          >
+            Overview
+          </button>
+          <button 
+            className={`tab-button ${activeTab === "curriculum" ? "active" : ""}`}
+            onClick={() => setActiveTab("curriculum")}
+          >
+            Curriculum
+          </button>
+          <button 
+            className={`tab-button ${activeTab === "instructor" ? "active" : ""}`}
+            onClick={() => setActiveTab("instructor")}
+          >
+            Instructor
+          </button>
+        </div>
+
         <div className="training-content">
           <div className="main-content">
-            <div className="instructor-section">
-              <h2 className="section-title">Instructor</h2>
-              <div className="instructor-info">
-                <img 
-                  src={training.instructor.avatar} 
-                  alt={training.instructor.name}
-                  className="instructor-avatar"
-                />
-                <div>
-                  <h3 className="instructor-name">{training.instructor.name}</h3>
-                  <p className="instructor-title">{training.instructor.title}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="about-section">
-              <h2 className="section-title">About</h2>
-              <p>{training.description}</p>
-            </div>
-
-            <div className="curriculum-section">
-              <h2 className="section-title">Curriculum</h2>
-              {training.curriculum.map((item: { title: string; duration: string }, index: number) => (
-                <div key={index} className="curriculum-item">
-                  <div className="curriculum-header">
-                    <h3 className="curriculum-title">{item.title}</h3>
-                    <span className="curriculum-meta">{item.duration}</span>
-                  </div>
-                </div>
-              ))}
+            <div className="tab-content" key={activeTab}>
+              {renderContent()}
             </div>
           </div>
 
           <div className="training-info">
+            <div className="training-image">
+              <img src={training.image} alt={training.title} />
+            </div>
             <div className="training-meta">
               <div className="meta-item">
                 <span className="meta-label">Durasi Pelatihan</span>

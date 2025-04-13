@@ -8,7 +8,7 @@
 }
 
 .footer.dark {
-  background: #00162A;
+  background: #E6F1F7;
   color: #FFFFFF;
 }
 
@@ -30,7 +30,7 @@
 .footer-brand p {
   font-size: 1rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
+  color: #00162A;
 }
 
 .footer-links {
@@ -44,7 +44,7 @@
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 24px;
-  color: #FFFFFF;
+  color: #00162A;
 }
 
 .link-group ul {
@@ -62,13 +62,13 @@
 }
 
 .link-group a {
-  color: rgba(255, 255, 255, 0.8);
+  color: #00162A;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .link-group a:hover {
-  color: #FFFFFF;
+  color: #00162A;
 }
 
 .contact ul li {
@@ -79,11 +79,11 @@
 
 .contact svg {
   flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: #00162A;
 }
 
 .contact span {
-  color: rgba(255, 255, 255, 0.8);
+  color: #00162A;
 }
 
 .footer-bottom {
@@ -95,7 +95,7 @@
 }
 
 .footer-bottom p {
-  color: rgba(255, 255, 255, 0.6);
+  color: #00162A;
   font-size: 0.875rem;
 }
 
