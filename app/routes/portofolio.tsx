@@ -17,7 +17,7 @@ export default function Portofolio() {
         <div className="hero-content">
         <span className="subtitle">Klien & Mitra</span>
           <h1>Kemitraan Berkelanjutan –<br />Membangun hubungan strategis<br />untuk hasil maksimal</h1>
-          <p>IKRAM - Ikatan Karya Mandiri untuk berelasi yang bermanfaat mulai dari bentuk pemanfaatan, pemanfaatan kepada maslahat, sekaligus hingga pengembangan diri - profil. Kemitraan dijalankan bersama berbagai lembaga yang memberikan kontribusi positif untuk pengembangan dan pemberdayaan.</p>
+          <p>Klien - klien kami memiliki latar belakang yang beragam, mulai dari pemerintah, perusahaan swasta nasional, sekolah, hingga organisasi non-profit. Kesamaan diantara mereka di mana semua ingin membangun organisasi yang jauh lebih baik dari aspek apapun termasuk keahlian dan kemampuan para pegawainya.</p>
         </div>
       </section>
 

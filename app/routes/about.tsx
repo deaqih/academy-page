@@ -95,6 +95,8 @@ export default function About() {
             <li><a href="#nilai-ikram">Nilai Ikram</a></li>
             <li><a href="#tenaga-ahli">Tenaga Ahli</a></li>
             <li><a href="#program">Program</a></li>
+            <li><a href="#sejarah">Sejarah</a></li>
+            <li><a href="#mitra">Klien & Mitra</a></li>
           </ul>
         </nav>
       </div>
@@ -316,6 +318,148 @@ export default function About() {
           </p>
         </div>
       </section>
+
+      {/* History Section */}
+      <section className="history" id="sejarah">
+        <div className="container">
+          <div className="history-header">
+            <h2>Sejarah Ikram</h2>
+            <div className="title-underline"></div>
+            <h3>Sejarah Ikram Academy: Dari Visi ke Transformasi</h3>
+          </div>
+
+          <div className="timeline">
+            <div className="timeline-items">
+              <div className="timeline-item">
+                <div className="timeline-dot"></div>
+                <div className="timeline-date">2023</div>
+                <div className="timeline-content">
+                  <div className="timeline-image">
+                    <img src="/images/followership.png" alt="Timeline 2023" />
+                  </div>
+                  <h3>Awal yang Kuat</h3>
+                  <p>IKRAM Academy Indonesia memulai perjalanan dengan mendapatkan klien pertama, Masyarakat Metrologi Indonesia (MMI), dan proyek bersama Kementerian Dalam Negeri ini menandai fondasi yang solid dalam membangun reputasi sebagai penyedia layanan yang dapat diandalkan.</p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot"></div>
+                <div className="timeline-date">2024</div>
+                <div className="timeline-content">
+                  <div className="timeline-image">
+                    <img src="/images/followership.png" alt="Timeline 2024" />
+                  </div>
+                  <h3>Pertumbuhan dan Kepercayaan</h3>
+                  <p>IKRAM menunjukan pertumbuhan pesat dengan mendapatkan kepercayaan dari Persada untuk bekerja sama dengan Bank Indonesia. Selain itu, penambahan klien baru, Garudafood mencerminkan kepercayaan yang meningkat dari berbagai sektor.</p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot"></div>
+                <div className="timeline-date">2025</div>
+                <div className="timeline-content">
+                  <div className="timeline-image">
+                    <img src="/images/followership.png" alt="Timeline 2025" />
+                  </div>
+                  <h3>Konsistensi dan Keberlanjutan</h3>
+                  <p>IKRAM tetap dipercaya oleh Garudafood untuk proyek Champion Trainee dan mendapatkan kepercayaan dari Bank Indonesia untuk proyek yang lebih besar. Ini menunjukan bahwa IKRAM terus berkembang dan memberikan solusi inovatif.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Section */}
+      <section className="portfolio" id="mitra">
+        <div className="container">
+          <div className="portfolio-header">
+            <span className="subtitle">Klien & Mitra</span>
+            <h2>Kemitraan Berkelanjutan – Membangun hubungan strategis untuk hasil maksimal</h2>
+            <p>Klien - klien kami memiliki latar belakang yang beragam, mulai dari pemerintah, perusahaan swasta nasional, sekolah, hingga organisasi non-profit. Kesamaan diantara mereka di mana semua ingin membangun organisasi yang jauh lebih baik dari aspek apapun termasuk keahlian dan kemampuan para pegawainya.</p>
+          </div>
+
+          <div className="partners-section">
+            <div className="section-title">
+              <h3>Mitra Kami</h3>
+              <div className="red-line"></div>
+            </div>
+            <div className="partners-grid">
+              <div className="partners-image">
+                <img src="/images/partners/Mitra.png" alt="Semua Mitra Ikram Academy" />
+              </div>
+            </div>
+          </div>
+
+          <div className="agenda-section">
+            <div className="section-title">
+              <h3>Implementasi Agenda Ikram</h3>
+              <div className="red-line"></div>
+            </div>
+
+            <div className="year-section">
+              <h4>2025</h4>
+              <div className="agenda-grid">
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">01</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan kepemimpinan dan kualitas layanan di perpustakaan.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">02</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima bagi peserta.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">03</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">04</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="year-section">
+              <h4>2024</h4>
+              <div className="agenda-grid">
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">01</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">02</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">03</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image"></div>
+                  <div className="agenda-number">04</div>
+                  <h5>Lorem ipsum dolor</h5>
+                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );

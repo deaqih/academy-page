@@ -24,8 +24,6 @@ export default function Navbar() {
             <Link to="/" className={isActive("/") ? "active" : ""}>Beranda</Link>
             <Link to="/pelatihan" className={isActive("/pelatihan") ? "active" : ""}>Pelatihan</Link>
             <Link to="/about" className={isActive("/about") ? "active" : ""}>Tentang Ikram</Link>
-            <Link to="/sejarah" className={isActive("/sejarah") ? "active" : ""}>Sejarah</Link>
-            <Link to="/portofolio" className={isActive("/portofolio") ? "active" : ""}>Klien & Mitra</Link>
             <Link to="/artikel" className={isActive("/artikel") ? "active" : ""}>Artikel</Link>
             <Link to="https://wa.me/6285183198360" className="btn btn-outline desktop-only">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,8 +69,6 @@ export default function Navbar() {
             <Link to="/" className={isActive("/") ? "active" : ""}>Beranda</Link>
             <Link to="/pelatihan" className={isActive("/pelatihan") ? "active" : ""}>Pelatihan</Link>
             <Link to="/about" className={isActive("/about") ? "active" : ""}>Tentang Ikram</Link>
-            <Link to="/sejarah" className={isActive("/sejarah") ? "active" : ""}>Sejarah</Link>
-            <Link to="/klien-mitra" className={isActive("/klien-mitra") ? "active" : ""}>Klien & Mitra</Link>
             <Link to="/artikel" className={isActive("/artikel") ? "active" : ""}>Artikel</Link>
             <Link to="https://wa.me/6285183198360" className="mobile-contact">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
