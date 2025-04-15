@@ -100,64 +100,217 @@
 .training-detail {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px;
-}
-
-.training-header {
-  margin-bottom: 48px;
-}
-
-.training-title {
-  font-size: 32px;
-  font-weight: 600;
-  color: #1A202C;
-  margin-bottom: 24px;
-}
-
-/* Tab Navigation */
-.training-tabs {
+  padding: 32px 24px;
   display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 48px;
-  padding: 0 384px;
-  border-bottom: 1px solid #E2E8F0;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Tabs Navigation */
+.tabs-navigation {
+  display: flex;
+  background-color: #EFF6FF;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .tab-button {
-  padding: 16px 32px;
-  color: #64748B;
-  font-weight: 500;
-  font-size: 16px;
-  background: transparent;
+  flex: 1;
+  padding: 16px;
+  background: none;
   border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4B5563;
   cursor: pointer;
-  position: relative;
   transition: all 0.3s ease;
-  outline: none;
+  text-align: center;
 }
 
 .tab-button:hover {
-  color: #0056B3;
+  background-color: rgba(0, 86, 179, 0.05);
 }
 
 .tab-button.active {
-  color: #0056B3;
-  font-weight: 600;
+  background-color: #0056B3;
+  color: white;
 }
 
-.tab-button.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
+/* Main Content Layout */
+.training-content-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Left Column */
+.left-column {
+  flex: 1;
+}
+
+.tab-indicator {
+  background-color: #EF4444;
+  width: 4px;
+  height: 24px;
+  margin-right: 12px;
+  border-radius: 2px;
+}
+
+.tab-section-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.tab-section-title h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1A202C;
+  margin: 0;
+}
+
+.instructor-section {
+  background-color: #F9FAFB;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.instructor-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.instructor-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1A202C;
+  margin-bottom: 8px;
+}
+
+.instructor-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.instructor-bio {
+  color: #4B5563;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* About Section */
+.about-section {
+  margin-bottom: 32px;
+}
+
+.about-content {
+  color: #4B5563;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Right Column - Training Info */
+.right-column {
+  width: 350px;
+  flex-shrink: 0;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.right-column .training-image {
   width: 100%;
-  height: 2px;
-  background: #0056B3;
-  box-shadow: 0 1px 3px rgba(0, 86, 179, 0.3);
+  height: 240px;
+  overflow: hidden;
+}
+
+.right-column .training-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.training-header {
+  margin-bottom: 24px;
+}
+
+.training-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #FFE4E4;
+  color: #FF4A4A;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 16px 16px 4px;
+}
+
+.training-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1A202C;
+  margin: 8px 16px 16px;
+  line-height: 1.3;
+}
+
+.training-meta {
+  background-color: white;
+  overflow: hidden;
+  border-top: 1px solid #E5E7EB;
+}
+
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.meta-item:last-child {
+  border-bottom: none;
+}
+
+.meta-label {
+  color: #6B7280;
+  font-size: 14px;
+}
+
+.meta-value {
+  color: #1A202C;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.enroll-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 32px);
+  padding: 14px 20px;
+  margin: 16px;
+  background-color: #0056B3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.enroll-button:hover {
+  background-color: #004494;
+}
+
+.enroll-button svg {
+  margin-left: 8px;
 }
 
 /* Training Image */
@@ -530,6 +683,14 @@
     font-size: 14px;
     white-space: nowrap;
   }
+
+  .tabs-navigation {
+    flex-wrap: wrap;
+  }
+
+  .tab-button {
+    flex: 1 0 100%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -549,6 +710,14 @@
   .tab-button {
     padding: 10px;
     font-size: 13px;
+  }
+
+  .tab-section-title h2 {
+    font-size: 20px;
+  }
+
+  .training-title {
+    font-size: 24px;
   }
 }
 

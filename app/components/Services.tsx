@@ -33,7 +33,7 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
                 </svg>
               </div>
               <h3>Training</h3>
-              <p>Mengembangkan keahlian teknis melalui pelatihan yang terstruktur dan metodologi yang sistematis.</p>
+              <p>Pelatihan untuk meningkatkan keterampilan, pengetahuan, dan kompetensi individu atau tim dalam suatu organisasi.</p>
             </div>
 
             <div className="service-card">
@@ -46,7 +46,7 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
                 </svg>
               </div>
               <h3>Consulting</h3>
-              <p>Memberikan solusi terbaik melalui analisis mendalam dan strategi yang tepat untuk pengembangan bisnis Anda.</p>
+              <p>Layanan yang secara efektif membimbing individu dan organisasi dengan saran, strategi, dan solusi untuk meningkatkan kinerja secara signifikan.</p>
             </div>
 
             <div className="service-card">
@@ -58,7 +58,7 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
                 </svg>
               </div>
               <h3>Assessment</h3>
-              <p>Evaluasi kompetensi untuk mengidentifikasi potensi dan area pengembangan yang diperlukan.</p>
+              <p>Proses evaluasi untuk mengukur kemampuan, kompetensi, atau efektivitas baik individu maupun organisasi.</p>
             </div>
           </div>
 

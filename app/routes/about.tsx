@@ -3,10 +3,31 @@ import { links as navbarLinks } from "~/components/Navbar";
 import Footer from "~/components/Footer";
 import Navbar from "~/components/Navbar";
 import { useEffect } from "react";
+import type { LoaderFunctionArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
+import { getTrainingPrograms4 } from "~/utils/supabase.server";
+import type { TrainingProgram } from "~/utils/supabase.server";
 
 export const links = () => [{ rel: "stylesheet", href: styles }];
 
+const truncateText = (text: string, maxLength: number = 120) => {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength).trim() + '...';
+};
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const { programs: trainings } = await getTrainingPrograms4();
+  return json({ trainings });
+}
+
+type LoaderData = {
+  trainings: TrainingProgram[];
+};
+
 export default function About() {
+  const { trainings } = useLoaderData<typeof loader>() as LoaderData;
+
   useEffect(() => {
     const sections = ['nilai-ikram', 'tenaga-ahli', 'program'];
     const navLinks = document.querySelectorAll<HTMLAnchorElement>('.values-nav a');
@@ -265,52 +286,21 @@ export default function About() {
       <section className="programs" id="program">
         <div className="container">
           <h2>Program Ikram</h2>
-          <h3>Lorem Ipsum dolor sit amet</h3>
+          <h3>Program Pelatihan Terbaik untuk Pengembangan Diri</h3>
 
           <div className="programs-grid">
-            <div className="program-card">
-              <div className="program-image">
-                <img src="/images/public-speaking.png" alt="Program 1" />
+            {trainings && trainings.slice(0, 4).map((training: TrainingProgram, index: number) => (
+              <div key={training.id} className="program-card">
+                <div className="program-image">
+                  <img src={training.image_url} alt={training.title} />
+                </div>
+                <div className="program-content">
+                  <span className="program-number">{String(index + 1).padStart(2, '0')}</span>
+                  <h4>{training.title}</h4>
+                  <p>{truncateText(training.description, 120)}</p>
+                </div>
               </div>
-              <div className="program-content">
-                <span className="program-number">01</span>
-                <h4>Lorem Ipsum dolor</h4>
-                <p>Pelatihan Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Perpustakaan: Program ini bertujuan untuk meningkatkan keterampilan kepemimpinan dan kualitas layanan di perpustakaan.</p>
-              </div>
-            </div>
-
-            <div className="program-card">
-              <div className="program-image">
-                <img src="/images/leadership.png" alt="Program 2" />
-              </div>
-              <div className="program-content">
-                <span className="program-number">02</span>
-                <h4>Lorem Ipsum dolor</h4>
-                <p>Pelatihan Refreshment and Empowering Service Excellence Program Tahun 2024: Pelatihan ini difokuskan pada penyegaran dan pemberdayaan layanan prima bagi peserta.</p>
-              </div>
-            </div>
-
-            <div className="program-card">
-              <div className="program-image">
-                <img src="/images/leadership.png" alt="Program 3" />
-              </div>
-              <div className="program-content">
-                <span className="program-number">03</span>
-                <h4>Lorem Ipsum dolor</h4>
-                <p>Tes Psikologi untuk Siswa: Bekerja sama dengan SMKN 33 Jakarta, Ikram Academy Indonesia menyelenggarakan tes psikologi untuk siswa pada 14 Maret 2024, guna membantu siswa memahami potensi diri mereka.</p>
-              </div>
-            </div>
-
-            <div className="program-card">
-              <div className="program-image">
-                <img src="/images/leadership.png" alt="Program 4" />
-              </div>
-              <div className="program-content">
-                <span className="program-number">04</span>
-                <h4>Lorem Ipsum dolor</h4>
-                <p>Talkshow Beasiswa dan Pendidikan Berbasis Teknologi: Bersama Yayasan Al-Jihad, Ikram Academy Indonesia mengadakan talkshow yang membahas peluang beasiswa dan penerapan teknologi dalam pendidikan pada Februari 2025.</p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <p className="programs-note">

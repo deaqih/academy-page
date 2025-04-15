@@ -25,26 +25,38 @@ export async function loader() {
   return json({ trainings });
 }
 
+type CategoryType = "All" | "Training" | "Consulting" | "Assessment";
+
 export default function Pelatihan() {
   const { trainings } = useLoaderData<typeof loader>();
-  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Training");
+  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>("Training");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("default");
   const itemsPerPage = 6;
 
-  const categories = ["Training", "Consulting", "Assessment"];
+  const categories: CategoryType[] = ["All", "Training", "Consulting", "Assessment"];
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({
+    Training: false,
+    Consulting: false,
+    Assessment: false
+  });
 
-  // Filter trainings based on category and search query
+  const toggleCategory = (category: string) => {
+    setExpandedCategories({
+      ...expandedCategories,
+      [category]: !expandedCategories[category]
+    });
+  };
+
   const filteredTrainings = trainings
-    .filter(training => training.category === selectedCategory)
+    .filter(training => selectedCategory === "All" ? true : training.category === selectedCategory)
     .filter(training => 
       training.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       training.description.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-  // Sort trainings
   const sortedTrainings = [...filteredTrainings].sort((a, b) => {
     if (sortOrder === "newest") {
       return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
@@ -54,21 +66,24 @@ export default function Pelatihan() {
     return 0;
   });
 
-  // Calculate pagination
   const totalPages = Math.ceil(sortedTrainings.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedTrainings = sortedTrainings.slice(startIndex, startIndex + itemsPerPage);
 
-  // Generate page numbers array
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
-
-  // Reset to first page when category or search changes
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory, searchQuery]);
+
+  const truncateText = (text: string, maxLength: number = 120): string => {
+    if (!text) return '';
+    if (text.length <= maxLength) return text;
+    return text.slice(0, maxLength).trim() + '...';
+  };
+
+  const handlePageChange = (page: number): void => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -85,8 +100,8 @@ export default function Pelatihan() {
             <p>Tingkatkan keterampilan dan kompetensi Anda dengan program pelatihan terbaik dari Irsam Academy!</p>
           </div>
 
-          <div className="filters">
-            <div className="search-filter">
+          <div className="top-filters">
+            <div className="top-search">
               <input 
                 type="text" 
                 placeholder="Cari" 
@@ -94,105 +109,118 @@ export default function Pelatihan() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            
-            <div className="category-dropdown">
-              <button 
-                className="category-button"
-                onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-              >
-                <span>Categories: {selectedCategory}</span>
-                <svg 
-                  width="20" 
-                  height="20" 
-                  viewBox="0 0 20 20" 
-                  fill="none"
-                  style={{ transform: isCategoryOpen ? 'rotate(180deg)' : 'rotate(0)' }}
-                >
-                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-              {isCategoryOpen && (
-                <div className="category-menu">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      className={`category-item ${category === selectedCategory ? 'active' : ''}`}
-                      onClick={() => {
-                        setSelectedCategory(category);
-                        setIsCategoryOpen(false);
-                      }}
-                    >
-                      {category}
-                    </button>
-                  ))}
-                </div>
-              )}
+            <div className="top-filter-button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M4 21V14M4 10V3M12 21V12M12 8V3M20 21V16M20 12V3M1 14H7M9 8H15M17 16H23" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Filter</span>
             </div>
-
-            <div className="sort-filter">
+            <div className="top-sort-filter">
               <select 
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
               >
-                <option value="default">Default</option>
+                <option value="default">Sort By: Default</option>
                 <option value="newest">Terbaru</option>
                 <option value="oldest">Terlama</option>
               </select>
             </div>
           </div>
 
-          <div className="training-grid">
-            {paginatedTrainings.map((training) => (
-              <Link 
-                to={`/pelatihans/${training.slug}`} 
-                key={training.id} 
-                className="training-card"
-              >
-                <img src={training.image_url} alt={training.title} />
-                <div className="card-content">
-                  <span className="category">{training.category}</span>
-                  <h3>{training.title}</h3>
-                  <p>{training.description}</p>
+          <div className="pelatihan-content">
+            <div className="categories-sidebar">
+              <div className="categories-section">
+                <div 
+                  className={`categories-header ${!isCategoryOpen ? 'collapsed' : ''}`}
+                  onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+                >
+                  <h3>Categories</h3>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
-              </Link>
-            ))}
-          </div>
+                <div className={`categories-content ${!isCategoryOpen ? 'collapsed' : ''}`}>
+                  <ul className="categories-list">
+                    {categories.map((category) => (
+                      <li 
+                        key={category}
+                        className={`category-item-sidebar ${selectedCategory === category ? 'active' : ''}`} 
+                        onClick={() => setSelectedCategory(category)}
+                      >
+                        <div className="category-name">
+                          {category}
+                        </div>
+                        {category !== 'All' && (
+                          <span onClick={(e) => {
+                            e.stopPropagation();
+                            toggleCategory(category);
+                          }}>
+                            {expandedCategories[category] ? '-' : '+'}
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-          {totalPages > 1 && (
-            <div className="pagination">
-              <button 
-                className="prev-page" 
-                aria-label="Previous page"
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-              <div className="page-numbers">
-                {pageNumbers.map((number) => (
-                  <span
-                    key={number}
-                    className={number === currentPage ? 'active' : ''}
-                    onClick={() => setCurrentPage(number)}
+            <div className="training-content">
+              <div className="training-grid">
+                {paginatedTrainings.map((training) => (
+                  <Link 
+                    to={`/pelatihans/${training.slug}`} 
+                    key={training.id} 
+                    className="training-card"
                   >
-                    {number}
-                  </span>
+                    <img src={training.image_url} alt={training.title} />
+                    <div className="card-content">
+                      <span className="category">{training.category}</span>
+                      <h3>{training.title}</h3>
+                      <p>{truncateText(training.description, 120)}</p>
+                    </div>
+                  </Link>
                 ))}
               </div>
-              <button 
-                className="next-page" 
-                aria-label="Next page"
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
+
+              <div className="pagination">
+                <div className="pagination-info">
+                  Menampilkan: {currentPage * itemsPerPage - itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, filteredTrainings.length)} dari {filteredTrainings.length}
+                </div>
+                <div className="pagination-controls">
+                  <button 
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="prev-next"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  
+                  {Array.from({ length: totalPages }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handlePageChange(index + 1)}
+                      className={currentPage === index + 1 ? 'active' : ''}
+                    >
+                      {index + 1}
+                    </button>
+                  ))}
+                  
+                  <button 
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="prev-next"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </main>
       <Footer />

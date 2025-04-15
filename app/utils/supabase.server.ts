@@ -78,6 +78,41 @@ export async function getTrainingPrograms(page: number = 1, limit: number = 3) {
   }
 }
 
+export async function getTrainingPrograms4(page: number = 1, limit: number = 4) {
+  const start = (page - 1) * limit;
+  const end = start + limit - 1;
+
+  console.log('Fetching training programs...');
+  console.log('Page:', page, 'Limit:', limit, 'Start:', start, 'End:', end);
+
+  try {
+    const { data, error, count } = await supabase
+      .from('trainings')
+      .select('*', { count: 'exact' })
+      .order('created_at', { ascending: false })
+      .range(start, end);
+
+    if (error) {
+      console.error('Error fetching training programs:', error);
+      throw error;
+    }
+
+    console.log('Successfully fetched programs:', data?.length || 0);
+    console.log('Total count:', count);
+
+    return {
+      programs: data || [],
+      totalCount: count || 0
+    };
+  } catch (error) {
+    console.error('Error in getTrainingPrograms:', error);
+    return {
+      programs: [],
+      totalCount: 0
+    };
+  }
+}
+
 export async function createDummyUsers() {
   const dummyUsers = [
     {
