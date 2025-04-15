@@ -157,8 +157,8 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
                   kompeten yang siap bersaing di dunia industri.
                 </p>
                 <div className="expert-staff-signature">
-                  <h5>Muhamad Roby Ashari</h5>
-                  <span>CEO of Ikram Academy Indonesia</span>
+                  <h5>CEO of Ikram Academy Indonesia</h5>
+                  {/* <span>CEO of Ikram Academy Indonesia</span> */}
                 </div>
               </div>
             </div>

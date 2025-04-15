@@ -274,8 +274,8 @@ export default function About() {
                 Ikram Academy Indonesia di tahun 2025 bermimpi menjadi mitra terpercaya dan terbaik di Regional. Untuk itu, kami mendorong seluruh Tenaga Ahli kami—termasuk coach, trainer, konsultan, asesor, dan dosen—untuk terus meningkatkan kompetensi mereka melalui pendidikan berjenjang serta sertifikasi keahlian berskala nasional maupun internasional.
               </p>
               <div className="expert-signature">
-                <h4>Muhammad Roby Ashari</h4>
-                <span>CEO of Ikram Academy Indonesia</span>
+                <h4>CEO of Ikram Academy Indonesia</h4>
+                {/* <span>CEO of Ikram Academy Indonesia</span> */}
               </div>
             </div>
           </div>

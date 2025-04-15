@@ -82,7 +82,7 @@
   height: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 240px;
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
@@ -162,7 +162,7 @@
   }
 
   .stats-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
