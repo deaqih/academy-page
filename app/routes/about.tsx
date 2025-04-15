@@ -264,6 +264,7 @@ export default function About() {
       <section className="expert" id="tenaga-ahli">
         <div className="container">
           <h2>Tenaga Ahli</h2>
+          <div className="title-underline"></div>
           <div className="expert-content">
             <div className="expert-image">
               <img src="/images/followership.png" alt="CEO Ikram Academy" />
@@ -286,6 +287,7 @@ export default function About() {
       <section className="programs" id="program">
         <div className="container">
           <h2>Program Ikram</h2>
+          <div className="title-underline"></div>
           <h3>Program Pelatihan Terbaik untuk Pengembangan Diri</h3>
 
           <div className="programs-grid">

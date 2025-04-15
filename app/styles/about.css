@@ -474,16 +474,16 @@ html {
 
 .expert h2 {
   font-family: 'Poppins', sans-serif;
-  font-size: 40px;
+  font-size: 24px;
   font-weight: 600;
   color: #1A202C;
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 16px;
   position: relative;
   display: inline-block;
 }
 
-.expert h2::after {
+/* .expert h2::after {
   content: '';
   position: absolute;
   bottom: -16px;
@@ -492,7 +492,7 @@ html {
   height: 4px;
   background: #FA5465;
   border-radius: 2px;
-}
+} */
 
 .expert .container {
   display: flex;
@@ -581,7 +581,7 @@ html {
   display: inline-block;
 }
 
-.programs h2::after {
+/* .programs h2::after {
   content: '';
   position: absolute;
   bottom: -8px;
@@ -591,7 +591,7 @@ html {
   height: 4px;
   background: #FA5465;
   border-radius: 2px;
-}
+} */
 
 .programs h3 {
   font-family: 'Poppins', sans-serif;
@@ -623,7 +623,7 @@ html {
 
 .program-card {
   background: #E6F1F7;
-  border-radius: 24px;
+  border-radius: 0px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -651,6 +651,7 @@ html {
   font-size: 30px;
   font-weight: 600;
   color: #FA5465;
+  margin-top: 16px;
   margin-bottom: 16px;
   display: block;
 }
@@ -680,6 +681,7 @@ html {
   text-align: center;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 64px;
 }
 
 /* Responsive Design */
@@ -922,10 +924,10 @@ html {
 }
 
 .history-header h2 {
-  font-size: 2.5rem;
+  font-size: 24px;
   font-weight: 700;
   color: #1A202C;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 .history-header h3 {
