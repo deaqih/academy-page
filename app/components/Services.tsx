@@ -125,7 +125,7 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
               </button>
             </div>
             <div className="highlight-image">
-              <img src="/images/followership.png" alt="Training Session at Ikram Academy" />
+              <img src="/images/about.png" alt="Training Session at Ikram Academy" />
             </div>
           </div>
         </div>

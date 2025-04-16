@@ -45,7 +45,7 @@ const BANNERS: Banner[] = [
     id: 2,
     title: "Unggul dalam Akhlak, Produktif dalam ilmu pengetahuan dan teknologi",
     description: "",
-    image: "/images/hero-image.png"
+    image: "/images/hero-image2.png"
   }
 ];
 

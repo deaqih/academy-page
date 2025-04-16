@@ -104,7 +104,7 @@ export default function About() {
               </p>
             </div>
             <div className="content-image">
-              <img src="/images/followership.png" alt="About Ikram" />
+              <img src="/images/about.png" alt="About Ikram" />
             </div>
           </div>
         </div>
@@ -272,7 +272,7 @@ export default function About() {
             <div className="expert-text">
               <h3>Menjadi Mitra Pilihan Terbaik Anda!</h3>
               <p>
-                Ikram Academy Indonesia di tahun 2025 bermimpi menjadi mitra terpercaya dan terbaik di Regional. Untuk itu, kami mendorong seluruh Tenaga Ahli kami—termasuk coach, trainer, konsultan, asesor, dan dosen—untuk terus meningkatkan kompetensi mereka melalui pendidikan berjenjang serta sertifikasi keahlian berskala nasional maupun internasional.
+                ​Kami berkomitmen menjadi mitra terpercaya dalam mewujudkan pendidikan berkualitas yang menghasilkan individu unggul, berdaya saing, dan berdampak positif bagi masyarakat. Melalui pelatihan, konsultasi, dan asesmen inovatif yang mudah diakses, kami membangun ekosistem pendidikan yang mendorong daya juang, pemikiran kritis, serta inovasi. Program kami dirancang untuk membentuk karakter mulia, profesional, dan berintegritas, mempersiapkan individu kompeten yang siap bersaing di dunia industri.
               </p>
               <div className="expert-signature">
                 <h4>CEO of Ikram Academy Indonesia</h4>
@@ -317,7 +317,7 @@ export default function About() {
           <div className="history-header">
             <h2>Sejarah Ikram</h2>
             <div className="title-underline"></div>
-            <h3>Sejarah Ikram Academy: Dari Visi ke Transformasi</h3>
+            <h3>Ikram Academy lahir dari komitmen untuk memberdayakan individu dan organisasi melalui pendidikan berkualitas. Berawal dari kebutuhan akan pelatihan yang relevan dan terstruktur, kami berkembang menjadi pusat pembelajaran yang menghubungkan tenaga ahli dengan para profesional, pebisnis, dan komunitas pembelajar.</h3>
           </div>
 
           <div className="timeline">
@@ -327,7 +327,7 @@ export default function About() {
                 <div className="timeline-date">2023</div>
                 <div className="timeline-content">
                   <div className="timeline-image">
-                    <img src="/images/followership.png" alt="Timeline 2023" />
+                    <img src="/images/2023_WM.png" alt="Timeline 2023" />
                   </div>
                   <h3>Awal yang Kuat</h3>
                   <p>IKRAM Academy Indonesia memulai perjalanan dengan mendapatkan klien pertama, Masyarakat Metrologi Indonesia (MMI), dan proyek bersama Kementerian Dalam Negeri ini menandai fondasi yang solid dalam membangun reputasi sebagai penyedia layanan yang dapat diandalkan.</p>
@@ -339,7 +339,7 @@ export default function About() {
                 <div className="timeline-date">2024</div>
                 <div className="timeline-content">
                   <div className="timeline-image">
-                    <img src="/images/followership.png" alt="Timeline 2024" />
+                    <img src="/images/2024_WM.png" alt="Timeline 2024" />
                   </div>
                   <h3>Pertumbuhan dan Kepercayaan</h3>
                   <p>IKRAM menunjukan pertumbuhan pesat dengan mendapatkan kepercayaan dari Persada untuk bekerja sama dengan Bank Indonesia. Selain itu, penambahan klien baru, Garudafood mencerminkan kepercayaan yang meningkat dari berbagai sektor.</p>
@@ -351,7 +351,7 @@ export default function About() {
                 <div className="timeline-date">2025</div>
                 <div className="timeline-content">
                   <div className="timeline-image">
-                    <img src="/images/followership.png" alt="Timeline 2025" />
+                    <img src="/images/2025_WM.png" alt="Timeline 2025" />
                   </div>
                   <h3>Konsistensi dan Keberlanjutan</h3>
                   <p>IKRAM tetap dipercaya oleh Garudafood untuk proyek Champion Trainee dan mendapatkan kepercayaan dari Bank Indonesia untuk proyek yang lebih besar. Ini menunjukan bahwa IKRAM terus berkembang dan memberikan solusi inovatif.</p>
@@ -368,7 +368,7 @@ export default function About() {
           <div className="portfolio-header">
             <span className="subtitle">Klien & Mitra</span>
             <h2>Kemitraan Berkelanjutan – Membangun hubungan strategis untuk hasil maksimal</h2>
-            <p>Klien - klien kami memiliki latar belakang yang beragam, mulai dari pemerintah, perusahaan swasta nasional, sekolah, hingga organisasi non-profit. Kesamaan diantara mereka di mana semua ingin membangun organisasi yang jauh lebih baik dari aspek apapun termasuk keahlian dan kemampuan para pegawainya.</p>
+            <p>Klien kami berasal dari beragam sektor—pemerintah, swasta, sekolah, hingga organisasi non-profit—dengan satu tujuan yang sama: membangun organisasi yang lebih unggul melalui peningkatan kompetensi SDM.</p>
           </div>
 
           <div className="partners-section">
