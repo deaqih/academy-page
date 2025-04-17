@@ -1133,4 +1133,14 @@
   75% {
     transform: translateY(20px) translateX(-20px);
   }
+}
+
+/* Banner 2 specific styling - make image smaller */
+.hero-image img[src="/images/white-placeholder.png"] {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  margin-right: 10%;
+  margin-top: 10%;
+  opacity: 0.01; /* Membuat gambar hampir tidak terlihat */
 } 

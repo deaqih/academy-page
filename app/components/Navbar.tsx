@@ -95,7 +95,7 @@ export default function Navbar() {
           <div className="nav-links">
             <Link to="/" className={isActive("/") ? "active" : ""}>Beranda</Link>
             
-            <Link to="/pelatihan" className={isActive("/pelatihan") ? "active" : ""}>Layanan</Link>
+            <Link to="/pelatihan" className={isActive("/pelatihan") ? "active" : ""}>Pelatihan</Link>
             <Link to="/about" className={isActive("/about") ? "active" : ""}>Tentang Ikram</Link>
             <Link to="/artikel" className={isActive("/artikel") ? "active" : ""}>Artikel</Link>
             <Link to="https://wa.me/6285183198360" className="btn btn-outline desktop-only">

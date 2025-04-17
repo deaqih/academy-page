@@ -142,7 +142,7 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
             
             <div className="expert-staff-grid">
               <div className="expert-staff-image">
-                <img src="/images/followership.png" alt="CEO Ikram Academy Indonesia" />
+                {/* <img src="/images/followership2.png" alt="CEO Ikram Academy Indonesia" /> */}
               </div>
               <div className="expert-staff-info">
                 <h4>Menjadi Mitra Pilihan Terbaik Anda!</h4>
