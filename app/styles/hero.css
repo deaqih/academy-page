@@ -703,6 +703,15 @@
   animation: fadeIn 0.5s ease forwards;
 }
 
+/* Banner 2 specific styling - make image smaller */
+.hero-image img[src="/images/hero-image2.png"] {
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+  margin-right: 10%;
+  margin-top: 10%;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
