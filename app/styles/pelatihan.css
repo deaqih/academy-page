@@ -225,19 +225,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #E5E7EB;
+  padding: 10px 12px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-bottom: 4px;
 }
 
 .category-item-sidebar:hover {
+  background-color: #F7FAFC;
   color: #0056B3;
 }
 
 .category-item-sidebar.active {
   color: #0056B3;
   font-weight: 500;
+  background-color: #EBF8FF;
 }
 
 .category-name {
@@ -478,4 +481,21 @@
   .content-section {
     padding: 32px 16px;
   }
+}
+
+/* Tambahan untuk tidak ada hasil */
+.no-results {
+  width: 100%;
+  padding: 4rem 2rem;
+  text-align: center;
+  background-color: #F8FAFC;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid #E5E7EB;
+}
+
+.no-results p {
+  font-size: 1.1rem;
+  color: #4A5568;
+  margin: 0;
 } 

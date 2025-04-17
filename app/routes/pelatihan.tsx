@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, useSearchParams } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
 import styles from "~/styles/pelatihan.css";
 import Navbar from "~/components/Navbar";
@@ -10,27 +10,42 @@ export function links() {
   return [{ rel: "stylesheet", href: styles }];
 }
 
-export async function loader() {
+export async function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const categoryParam = url.searchParams.get("category");
+  
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!);
   
-  const { data: trainings, error } = await supabase
+  let query = supabase
     .from('trainings')
     .select('*')
     .order('created_at', { ascending: false });
+    
+  // Filter by category if provided
+  if (categoryParam) {
+    query = query.eq('category', categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1));
+  }
+  
+  const { data: trainings, error } = await query;
 
   if (error) {
     throw new Error('Failed to fetch trainings');
   }
 
-  return json({ trainings });
+  return json({ trainings, selectedCategory: categoryParam });
 }
 
 type CategoryType = "All" | "Training" | "Consulting" | "Assessment";
 
 export default function Pelatihan() {
-  const { trainings } = useLoaderData<typeof loader>();
+  const { trainings, selectedCategory } = useLoaderData<typeof loader>();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType>("Training");
+  const [activeCategory, setActiveCategory] = useState<CategoryType>(
+    selectedCategory 
+      ? (selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)) as CategoryType
+      : "All"
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("default");
@@ -43,6 +58,17 @@ export default function Pelatihan() {
     Assessment: false
   });
 
+  // Update URL when category changes
+  useEffect(() => {
+    if (activeCategory === "All") {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete("category");
+      setSearchParams(newParams);
+    } else {
+      setSearchParams({ category: activeCategory.toLowerCase() });
+    }
+  }, [activeCategory, setSearchParams, searchParams]);
+
   const toggleCategory = (category: string) => {
     setExpandedCategories({
       ...expandedCategories,
@@ -50,11 +76,17 @@ export default function Pelatihan() {
     });
   };
 
+  const handleCategoryChange = (category: CategoryType) => {
+    setActiveCategory(category);
+    setCurrentPage(1);
+  };
+
   const filteredTrainings = trainings
-    .filter(training => selectedCategory === "All" ? true : training.category === selectedCategory)
     .filter(training => 
-      training.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      training.description.toLowerCase().includes(searchQuery.toLowerCase())
+      searchQuery 
+        ? training.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          training.description.toLowerCase().includes(searchQuery.toLowerCase())
+        : true
     );
 
   const sortedTrainings = [...filteredTrainings].sort((a, b) => {
@@ -72,7 +104,7 @@ export default function Pelatihan() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategory, searchQuery]);
+  }, [searchQuery]);
 
   const truncateText = (text: string, maxLength: number = 120): string => {
     if (!text) return '';
@@ -83,6 +115,7 @@ export default function Pelatihan() {
   const handlePageChange = (page: number): void => {
     if (page < 1 || page > totalPages) return;
     setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -91,13 +124,13 @@ export default function Pelatihan() {
       <main className="pelatihan">
         <div className="hero-section">
           <span className="subtitle">Pelatihan</span>
-          <h1>Pelatihan</h1>
+          <h1>Pelatihan {activeCategory !== "All" ? activeCategory : ""}</h1>
         </div>
 
         <div className="content-section">
           <div className="program-header">
             <h2>Program Pelatihan Kami</h2>
-            <p>Tingkatkan keterampilan dan kompetensi Anda dengan program pelatihan terbaik dari Irsam Academy!</p>
+            <p>Tingkatkan keterampilan dan kompetensi Anda dengan program pelatihan terbaik dari Ikram Academy!</p>
           </div>
 
           <div className="top-filters">
@@ -144,8 +177,8 @@ export default function Pelatihan() {
                     {categories.map((category) => (
                       <li 
                         key={category}
-                        className={`category-item-sidebar ${selectedCategory === category ? 'active' : ''}`} 
-                        onClick={() => setSelectedCategory(category)}
+                        className={`category-item-sidebar ${activeCategory === category ? 'active' : ''}`} 
+                        onClick={() => handleCategoryChange(category)}
                       >
                         <div className="category-name">
                           {category}
@@ -167,58 +200,66 @@ export default function Pelatihan() {
 
             <div className="training-content">
               <div className="training-grid">
-                {paginatedTrainings.map((training) => (
-                  <Link 
-                    to={`/pelatihans/${training.slug}`} 
-                    key={training.id} 
-                    className="training-card"
-                  >
-                    <img src={training.image_url} alt={training.title} />
-                    <div className="card-content">
-                      <span className="category">{training.category}</span>
-                      <h3>{training.title}</h3>
-                      <p>{truncateText(training.description, 120)}</p>
-                    </div>
-                  </Link>
-                ))}
+                {paginatedTrainings.length > 0 ? (
+                  paginatedTrainings.map((training) => (
+                    <Link 
+                      to={`/pelatihans/${training.slug}`} 
+                      key={training.id} 
+                      className="training-card"
+                    >
+                      <img src={training.image_url} alt={training.title} />
+                      <div className="card-content">
+                        <span className="category">{training.category}</span>
+                        <h3>{training.title}</h3>
+                        <p>{truncateText(training.description, 120)}</p>
+                      </div>
+                    </Link>
+                  ))
+                ) : (
+                  <div className="no-results">
+                    <p>Tidak ada pelatihan yang ditemukan.</p>
+                  </div>
+                )}
               </div>
 
-              <div className="pagination">
-                <div className="pagination-info">
-                  Menampilkan: {currentPage * itemsPerPage - itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, filteredTrainings.length)} dari {filteredTrainings.length}
-                </div>
-                <div className="pagination-controls">
-                  <button 
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="prev-next"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
-                  
-                  {Array.from({ length: totalPages }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handlePageChange(index + 1)}
-                      className={currentPage === index + 1 ? 'active' : ''}
+              {paginatedTrainings.length > 0 && (
+                <div className="pagination">
+                  <div className="pagination-info">
+                    Menampilkan: {currentPage * itemsPerPage - itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, filteredTrainings.length)} dari {filteredTrainings.length}
+                  </div>
+                  <div className="pagination-controls">
+                    <button 
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="prev-next"
                     >
-                      {index + 1}
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </button>
-                  ))}
-                  
-                  <button 
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="prev-next"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
+                    
+                    {Array.from({ length: totalPages }).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)}
+                        className={currentPage === index + 1 ? 'active' : ''}
+                      >
+                        {index + 1}
+                      </button>
+                    ))}
+                    
+                    <button 
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="prev-next"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

@@ -271,4 +271,139 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Dropdown Styling */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #005C98;
+  text-decoration: none;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle.active {
+  color: #FF4D6D;
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 0;
+  z-index: 1000;
+  opacity: 1;
+  transform: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: #4A5568;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f5f8fa;
+  color: #FF4D6D;
+}
+
+/* Mobile Dropdown Styling */
+.mobile-dropdown {
+  width: 100%;
+}
+
+.mobile-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  font-size: 16px;
+  color: #4A5568;
+  cursor: pointer;
+}
+
+.mobile-dropdown-header.active {
+  color: #FF4D6D;
+}
+
+.mobile-dropdown-menu {
+  background-color: #f5f8fa;
+  padding: 8px 0;
+}
+
+.mobile-dropdown-menu a {
+  display: block;
+  padding: 12px 32px;
+  color: #4A5568;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.mobile-dropdown-menu a:hover,
+.mobile-dropdown-menu a.active {
+  color: #FF4D6D;
+}
+
+/* Show mobile menu properly */
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(254, 254, 254, 0.9);
+  border-radius: 0 0 24px 24px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease-out;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100;
+}
+
+@media (max-width: 992px) {
+  .dropdown-toggle {
+    padding: 16px 20px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    animation: none;
+    opacity: 1;
+    transform: none;
+    background-color: #f5f8fa;
+    padding: 0;
+  }
+  
+  .dropdown-menu a {
+    padding: 12px 32px;
+  }
 } 

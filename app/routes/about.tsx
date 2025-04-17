@@ -393,28 +393,16 @@ export default function About() {
               <h4>2025</h4>
               <div className="agenda-grid">
                 <div className="agenda-item">
-                  <div className="agenda-image"></div>
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2025-01.jpg')" }}></div>
                   <div className="agenda-number">01</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan kepemimpinan dan kualitas layanan di perpustakaan.</p>
+                  <h5>Pelatihan Service Excellence Refreshment & Empowering Bank Indonesia</h5>
+                  <p>Pelatihan Service Excellence Refreshment and Empowering yang diselenggarakan oleh Bank Indonesia pada semester 1 tahun 2025 bertujuan memperbarui pengetahuan dan meningkatkan keterampilan pegawai dalam memberikan pelayanan terbaik di wilayah Kalimantan, Balinusa, dan Sulampua.</p>
                 </div>
                 <div className="agenda-item">
-                  <div className="agenda-image"></div>
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2025-02.jpg')" }}></div>
                   <div className="agenda-number">02</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima bagi peserta.</p>
-                </div>
-                <div className="agenda-item">
-                  <div className="agenda-image"></div>
-                  <div className="agenda-number">03</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan.</p>
-                </div>
-                <div className="agenda-item">
-                  <div className="agenda-image"></div>
-                  <div className="agenda-number">04</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima.</p>
+                  <h5>Champion Trainee Goes To Actions 2025</h5>
+                  <p>Champion Trainee Goes to Actions 2025 adalah program pengembangan profesional yang mengubah trainee menjadi pemimpin perubahan. Program ini memberikan pengalaman langsung untuk menerapkan pengetahuan dan keterampilan dalam proyek nyata.</p>
                 </div>
               </div>
             </div>
@@ -423,28 +411,118 @@ export default function About() {
               <h4>2024</h4>
               <div className="agenda-grid">
                 <div className="agenda-item">
-                  <div className="agenda-image"></div>
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-01.jpg')" }}></div>
                   <div className="agenda-number">01</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan.</p>
+                  <h5>Pelatihan Service Excellent Bank Indonesia Wilayah Timur Tahun 2024</h5>
+                  <p>Pelatihan ini bertujuan untuk meningkatkan kualitas layanan dengan membangun keterampilan komunikasi, empati, dan profesionalisme dalam melayani pelanggan di Bank Indonesia Wilayah Timur. Mencakup 19 Titik Kantor Perwakilan Wilayah Bank Indonesia Wilayah Timur.</p>
                 </div>
                 <div className="agenda-item">
-                  <div className="agenda-image"></div>
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-02.jpg')" }}></div>
                   <div className="agenda-number">02</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima.</p>
+                  <h5>Champion Trainee and Champion Pool 2024 Goes to Actions</h5>
+                  <p>Program ini dirancang untuk membentuk individu unggul dengan keterampilan, mindset, dan kesiapan untuk menghadapi tantangan nyata di dunia profesional. Dilaksanakan bersama Garudafood pada 3-4 Februari 2024.</p>
                 </div>
                 <div className="agenda-item">
-                  <div className="agenda-image"></div>
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-03.jpg')" }}></div>
                   <div className="agenda-number">03</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Leadership dan Peningkatan Kualitas Mutu Pendidikan di Lingkungan Penyusunan Program ini bertujuan untuk meningkatkan kepemimpinan.</p>
+                  <h5>Berbuka Berbagi Bahagia Bersama</h5>
+                  <p>Kegiatan ini merupakan momen spesial untuk berbagi kebahagiaan di bulan penuh berkah. Dilaksanakan bersama TUV Rheinland Indonesia pada 22 Maret 2024 untuk merayakan kebersamaan dan berbagi kebaikan.</p>
                 </div>
                 <div className="agenda-item">
-                  <div className="agenda-image"></div>
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-04.jpg')" }}></div>
                   <div className="agenda-number">04</div>
-                  <h5>Lorem ipsum dolor</h5>
-                  <p>Penelitian Development and Empowering Service Excellence Program Tahun 2024. Penelitian ini difokuskan untuk pengembangan dan pemberdayaan layanan prima.</p>
+                  <h5>Graduation CT (Champion Trainee) 2024</h5>
+                  <p>Graduation CT merupakan momen istimewa untuk merayakan keberhasilan para peserta yang telah menyelesaikan program Champion Trainee dengan dedikasi dan semangat luar biasa. Dilaksanakan bersama Garudafood pada 4 Mei 2024.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-05.jpg')" }}></div>
+                  <div className="agenda-number">05</div>
+                  <h5>Pelatihan Service Excellent Bank Indonesia Wilayah Pulau Jawa Tahun 2024</h5>
+                  <p>Pelatihan ini bertujuan untuk meningkatkan kualitas layanan dengan membangun keterampilan komunikasi, empati, dan profesionalisme dalam melayani pelanggan di Bank Indonesia Wilayah Pulau Jawa. Mencakup 16 Titik Kantor Perwakilan Bank Indonesia di Jawa.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-06.jpg')" }}></div>
+                  <div className="agenda-number">06</div>
+                  <h5>Peningkatan Kinerja PTSP dan Percepatan Perizinan Berusaha</h5>
+                  <p>Program pengembangan kapasitas bagi aparatur pemerintah daerah untuk mengoptimalkan pelayanan terpadu satu pintu serta mempercepat proses perizinan berusaha, guna mendukung iklim investasi yang lebih kondusif. Kerjasama dengan Kementerian Investasi/BKPM.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-07.jpg')" }}></div>
+                  <div className="agenda-number">07</div>
+                  <h5>Peningkatan Kapasitas Aparatur Pemerintah Desa 2024</h5>
+                  <p>Program penguatan kompetensi aparatur desa dan pengurus kelembagaan desa guna meningkatkan tata kelola pemerintahan desa yang lebih efektif dan profesional di Provinsi Maluku. Kerjasama dengan Kementerian Dalam Negeri, berlangsung 21 Agustus - 24 September 2024.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-08.jpg')" }}></div>
+                  <div className="agenda-number">08</div>
+                  <h5>Training of Trainer (ToT) Pelatihan PKAD Berbasis LMS</h5>
+                  <p>Program pelatihan bagi calon pelatih dalam pengelolaan keuangan desa dan perencanaan pembangunan desa menggunakan Learning Management System (LMS). Mencakup wilayah Jambi, Sumatera Selatan, Lampung, Bengkulu, dan Kepulauan Bangka Belitung.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-09.jpg')" }}></div>
+                  <div className="agenda-number">09</div>
+                  <h5>ISO 27001:2022</h5>
+                  <p>Implementasi standar internasional untuk Sistem Manajemen Keamanan Informasi (ISMS) yang bertujuan melindungi informasi dari ancaman seperti kebocoran, akses tidak sah, dan serangan siber. Kerjasama dengan PT Angan Kreasi Semesta pada 16 September 2024.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-10.jpg')" }}></div>
+                  <div className="agenda-number">10</div>
+                  <h5>Personal Branding SMKN 47 Jakarta</h5>
+                  <p>Pelatihan proses membangun dan memperkuat identitas diri agar dikenal sesuai dengan keahlian, nilai, dan karakter unik yang dimiliki. Dilaksanakan di SMKN 47 Jakarta pada 14-17 Mei 2024 untuk membekali siswa dengan keterampilan personal branding.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2024-11.jpg')" }}></div>
+                  <div className="agenda-number">11</div>
+                  <h5>Pelatihan Menjadi Konten Kreator Profesional</h5>
+                  <p>Pelatihan ini dirancang untuk membekali peserta dengan keterampilan dalam menciptakan konten digital yang kreatif, menarik, dan berkualitas. Dilaksanakan di SMKN 25 Jakarta pada 14 Juni 2024.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="year-section">
+              <h4>2023</h4>
+              <div className="agenda-grid">
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/mmi.jpg')" }}></div>
+                  <div className="agenda-number">01</div>
+                  <h5>Masyarakat Metrologi Indonesia Tahun 2023</h5>
+                  <p>Rapat Umum Anggota (RUA) adalah forum tertinggi dalam suatu organisasi yang diselenggarakan secara berkala untuk membahas, mengevaluasi, serta menetapkan kebijakan strategis organisasi. RUA menjadi wadah bagi seluruh anggota untuk berpartisipasi dalam pengambilan keputusan.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/iso-9001.png')" }}></div>
+                  <div className="agenda-number">02</div>
+                  <h5>ISO 9001:2015</h5>
+                  <p>ISO 9001:2015 adalah standar internasional untuk sistem manajemen mutu yang bertujuan memastikan suatu organisasi mampu menyediakan produk atau layanan yang memenuhi kebutuhan pelanggan serta peraturan yang berlaku.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2023-03.jpg')" }}></div>
+                  <div className="agenda-number">03</div>
+                  <h5>Peningkatan Kapasitas Aparatur Pemerintah Desa</h5>
+                  <p>Peningkatan Kapasitas Aparatur Pemerintah Desa dan Pengurus Kelembagaan Desa 2023 di Provinsi Lampung adalah program penguatan kompetensi aparatur desa dan pengurus kelembagaan desa guna meningkatkan tata kelola pemerintahan desa yang lebih efektif.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2023-04.jpg')" }}></div>
+                  <div className="agenda-number">04</div>
+                  <h5>FGD dan Konsinyering Divisi Logistik PT Kereta Api Indonesia</h5>
+                  <p>FGD dan Konsinyering Divisi Logistik 2023 PT Kereta Api Indonesia (Persero) adalah forum diskusi dan penyusunan strategi yang melibatkan para pemangku kepentingan untuk meningkatkan efektivitas operasional serta pengelolaan logistik perusahaan.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2023-05.jpg')" }}></div>
+                  <div className="agenda-number">05</div>
+                  <h5>Job Fair SMK 33 Jakarta</h5>
+                  <p>Job Fair di sekolah adalah acara yang diselenggarakan untuk mempertemukan siswa dengan berbagai perusahaan dan lembaga penyedia lapangan kerja. Kegiatan ini bertujuan untuk memberikan wawasan kepada siswa mengenai dunia kerja, peluang karier, serta keterampilan yang dibutuhkan.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2023-06.jpg')" }}></div>
+                  <div className="agenda-number">06</div>
+                  <h5>Pelatihan Leadership dan Peningkatan Mutu Pendidikan</h5>
+                  <p>Pelatihan leadership adalah program yang dirancang untuk mengembangkan keterampilan kepemimpinan seseorang agar mampu memimpin dengan efektif, mengambil keputusan yang tepat, serta menginspirasi dan memotivasi tim.</p>
+                </div>
+                <div className="agenda-item">
+                  <div className="agenda-image" style={{ backgroundImage: "url('/images/agenda2023-07.jpg')" }}></div>
+                  <div className="agenda-number">07</div>
+                  <h5>IHT Kurikulum Merdeka</h5>
+                  <p>In-House Training (IHT) Kurikulum Merdeka adalah program pelatihan yang diselenggarakan di tingkat satuan pendidikan untuk membekali pendidik dan tenaga kependidikan dengan pemahaman mendalam mengenai konsep, prinsip, serta penerapan Kurikulum Merdeka.</p>
                 </div>
               </div>
             </div>
