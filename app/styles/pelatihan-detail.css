@@ -1,47 +1,19 @@
 .pelatihan-detail {
   min-height: 100vh;
-  background: linear-gradient(to bottom, #F8FAFC, #FFFFFF);
-  padding-top: 32px;
+  background-color: #F8FAFC;
 }
 
-
-/* Hero Section */
-.artikel-hero {
-  height: 472px;
-  padding-top: 244px;
-  padding-bottom: 48px;
-  background: linear-gradient(180deg, rgba(32, 210, 229, 0.05) 0%, #FAFCFD 100%);
-}
-
-.artikel-hero .hero-content {
-  max-width: 1000px;
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  align-items: center;
-}
-
-.artikel-hero .subtitle {
-  font-size: 16px;
-  color: #338ABE;
-  display: block;
-  text-align: center;
-}
-
-.artikel-hero h1 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 48px;
-  font-weight: 600;
-  color: #1A202C;
-  margin: 0;
+  padding: 0 24px;
 }
 
 /* Hero Section */
 .training-hero {
   width: 100%;
   height: 472px;
-  padding-top: 244px;
+  padding-top: 130px;
   padding-bottom: 48px;
   margin: 0 auto;
   display: flex;
@@ -56,7 +28,8 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0px 24px;
+  margin-top: 100px;
   text-align: center;
 }
 
@@ -84,63 +57,68 @@
 }
 
 .training-hero-title {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 600;
   color: #1A202C;
   margin: 0;
   line-height: 1.2;
 }
 
-/* Breadcrumb styles */
-.breadcrumb {
-  display: none; /* Hide the old breadcrumb */
-}
-
 /* Training Detail Content */
 .training-detail {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 24px;
+  margin: -30px auto 64px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 /* Tabs Navigation */
 .tabs-navigation {
   display: flex;
-  background-color: #EFF6FF;
-  border-radius: 8px;
-  overflow: hidden;
+  border-bottom: 1px solid #E2E8F0;
+  background-color: #FFFFFF;
 }
 
 .tab-button {
-  flex: 1;
-  padding: 16px;
+  padding: 16px 24px;
   background: none;
   border: none;
   font-size: 16px;
   font-weight: 500;
-  color: #4B5563;
+  color: #4A5568;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-align: center;
+  position: relative;
 }
 
 .tab-button:hover {
-  background-color: rgba(0, 86, 179, 0.05);
+  color: #0056B3;
 }
 
 .tab-button.active {
+  color: #0056B3;
+  font-weight: 600;
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
   background-color: #0056B3;
-  color: white;
 }
 
 /* Main Content Layout */
 .training-content-layout {
   display: flex;
   gap: 32px;
-  align-items: flex-start;
+  padding: 32px;
 }
 
 /* Left Column */
@@ -148,179 +126,126 @@
   flex: 1;
 }
 
-.tab-indicator {
-  background-color: #EF4444;
-  width: 4px;
-  height: 24px;
-  margin-right: 12px;
-  border-radius: 2px;
+.tab-content {
+  display: none;
 }
 
-.tab-section-title {
-  display: flex;
-  align-items: center;
-  margin-bottom: 24px;
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
 }
 
-.tab-section-title h2 {
+/* Instructor Section */
+.instructor-section {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.instructor-title-box {
+  margin-bottom: 20px;
+}
+
+.instructor-title-box h2 {
   font-size: 24px;
   font-weight: 600;
   color: #1A202C;
   margin: 0;
+  position: relative;
+  padding-left: 12px;
+  border-left: 4px solid #EF4444;
 }
 
-.instructor-section {
-  background-color: #F9FAFB;
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.instructor-header {
+.instructor-content {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  gap: 24px;
 }
 
-.instructor-name {
-  font-size: 20px;
-  font-weight: 600;
-  color: #1A202C;
-  margin-bottom: 8px;
+.instructor-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .instructor-avatar {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  margin-bottom: 16px;
-}
-
-.instructor-bio {
-  color: #4B5563;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* About Section */
-.about-section {
-  margin-bottom: 32px;
-}
-
-.about-content {
-  color: #4B5563;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-/* Right Column - Training Info */
-.right-column {
-  width: 350px;
-  flex-shrink: 0;
-  background-color: #FFFFFF;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-}
-
-.right-column .training-image {
-  width: 100%;
-  height: 240px;
-  overflow: hidden;
-}
-
-.right-column .training-image img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
-.training-header {
-  margin-bottom: 24px;
-}
-
-.training-category {
-  display: inline-block;
-  padding: 4px 12px;
-  background: #FFE4E4;
-  color: #FF4A4A;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-  margin: 16px 16px 4px;
-}
-
-.training-card-title {
-  font-size: 24px;
+.instructor-name {
+  font-size: 18px;
   font-weight: 600;
   color: #1A202C;
-  margin: 8px 16px 16px;
-  line-height: 1.3;
 }
 
-.training-meta {
-  background-color: white;
-  overflow: hidden;
-  border-top: 1px solid #E5E7EB;
-}
-
-.meta-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid #E5E7EB;
-}
-
-.meta-item:last-child {
-  border-bottom: none;
-}
-
-.meta-label {
-  color: #6B7280;
-  font-size: 14px;
-}
-
-.meta-value {
+.instructor-about h3 {
+  font-size: 18px;
+  font-weight: 600;
   color: #1A202C;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: right;
+  margin: 0 0 16px 0;
+  position: relative;
+  padding-left: 12px;
+  border-left: 4px solid #EF4444;
 }
 
-.enroll-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: calc(100% - 32px);
-  padding: 14px 20px;
-  margin: 16px;
-  background-color: #0056B3;
-  color: white;
-  border: none;
-  border-radius: 8px;
+.instructor-about p {
+  color: #4A5568;
   font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Overview Section */
+.overview-section {
+  margin-top: 24px;
+}
+
+.about-section h3 {
+  font-size: 18px;
   font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease;
-  text-decoration: none;
+  color: #1A202C;
+  margin: 0 0 16px 0;
+  position: relative;
+  padding-left: 12px;
+  border-left: 4px solid #EF4444;
 }
 
-.enroll-button:hover {
-  background-color: #004494;
+.about-section p {
+  color: #4A5568;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-.enroll-button svg {
-  margin-left: 8px;
+/* Curriculum Section */
+.curriculum-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1A202C;
+  margin: 0 0 16px 0;
+  position: relative;
+  padding-left: 12px;
+  border-left: 4px solid #EF4444;
+}
+
+.curriculum-content {
+  color: #4A5568;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Training Image */
 .training-image {
   width: 100%;
   height: 400px;
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
-  margin-bottom: 32px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .training-image img {
@@ -334,417 +259,105 @@
   transform: scale(1.02);
 }
 
-/* Overview Section */
-.overview-section {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+/* Right Column - Training Info */
+.right-column {
+  width: 350px;
+  flex-shrink: 0;
 }
 
-/* Content Sections */
-.section-content {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fadeInUp 0.3s ease forwards;
+.sidebar-training-card {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.sidebar-training-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-/* Training Content Layout */
-.training-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 64px;
-  padding: 0 384px;
-  margin-bottom: 64px;
-}
-
-/* Main Content Styles */
-.main-content {
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-}
-
-.section-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #1A202C;
-  margin-bottom: 24px;
-  position: relative;
-  padding-left: 16px;
-}
-
-.section-title::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 24px;
-  background: #0056B3;
-  border-radius: 2px;
-}
-
-/* Instructor Section */
-.instructor-section {
-  background: #FFFFFF;
-  border-radius: 16px;
-  padding: 32px;
-  margin-bottom: 48px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.instructor-section:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 3px 6px -1px rgba(0, 0, 0, 0.06);
-}
-
-.instructor-info {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-}
-
-.instructor-avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.sidebar-training-image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.instructor-name {
+.training-card-content {
+  padding: 20px;
+}
+
+.training-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #FFDDE0;
+  color: #EF4444;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.training-title {
   font-size: 20px;
   font-weight: 600;
   color: #1A202C;
-  margin-bottom: 8px;
+  margin: 0 0 20px 0;
+  line-height: 1.3;
 }
 
-.instructor-title {
-  color: #64748B;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* Stats Styling */
+.training-stats {
+  margin-bottom: 24px;
 }
 
-.instructor-title::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: #0056B3;
-  border-radius: 50%;
-}
-
-/* About Section */
-.about-section p {
-  color: #4A5568;
-  line-height: 1.8;
-  font-size: 16px;
-  background: #FFFFFF;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Curriculum Section */
-.curriculum-item {
-  padding: 24px;
-  background: #FFFFFF;
-  border-radius: 12px;
-  margin-bottom: 16px;
-  border: 1px solid #E2E8F0;
-  transition: all 0.3s ease;
-}
-
-.curriculum-item:hover {
-  transform: translateX(4px);
-  border-color: #0056B3;
-  box-shadow: 0 2px 4px rgba(0, 86, 179, 0.1);
-}
-
-.curriculum-header {
+.stat-row {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #EDF2F7;
 }
 
-.curriculum-title {
-  font-size: 16px;
-  font-weight: 500;
-  color: #1A202C;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.stat-row:last-child {
+  border-bottom: none;
 }
 
-.curriculum-title::before {
-  content: '📚';
-  font-size: 18px;
-}
-
-.curriculum-meta {
-  color: #0056B3;
+.stat-label {
+  color: #718096;
   font-size: 14px;
-  font-weight: 500;
-  background: rgba(0, 86, 179, 0.1);
-  padding: 4px 12px;
-  border-radius: 100px;
 }
 
-/* Training Info Sidebar */
-.training-info {
-  background: #FFFFFF;
-  border-radius: 16px;
-  padding: 24px;
-  position: sticky;
-  top: 100px;
-  height: fit-content;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.training-info .training-image {
-  height: 200px;
-  margin-bottom: 24px;
-  border-radius: 12px;
-}
-
-.training-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
-}
-
-.meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 16px;
-  background: #F8FAFC;
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-.meta-item:hover {
-  background: #EDF2F7;
-}
-
-.meta-label {
-  color: #64748B;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.meta-label::before {
-  content: '•';
-  color: #0056B3;
-  font-size: 20px;
-}
-
-.meta-value {
+.stat-value {
   color: #1A202C;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .enroll-button {
-  width: 100%;
-  padding: 16px 24px;
-  background: linear-gradient(45deg, #0056B3, #0066CC);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  padding: 14px 20px;
+  background-color: #0056B3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
   gap: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .enroll-button:hover {
-  background: linear-gradient(45deg, #004494, #0056B3);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 86, 179, 0.2);
+  background-color: #004494;
 }
 
-.enroll-button:active {
-  transform: translateY(0);
-}
-
-/* Training Tag */
-.training-tag {
-  display: inline-block;
-  padding: 4px 12px;
-  background: #FFE4E8;
-  color: #FA5465;
-  border-radius: 100px;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
-
-/* Responsive Design */
-@media (max-width: 1400px) {
-  .training-tabs,
-  .training-content {
-    padding: 0 144px;
-  }
-
-  .training-image {
-    height: 350px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .training-tabs,
-  .training-content {
-    padding: 0 64px;
-  }
-
-  .training-image {
-    height: 300px;
-  }
-
-  .tab-button {
-    padding: 16px 24px;
-  }
-}
-
-@media (max-width: 992px) {
-  .training-tabs,
-  .training-content {
-    padding: 0 32px;
-  }
-
-  .training-content {
-    grid-template-columns: 1fr;
-  }
-
-  .training-info {
-    position: static;
-    margin-top: 32px;
-  }
-
-  .training-image {
-    height: 250px;
-  }
-
-  .tab-button {
-    padding: 12px 16px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .training-detail {
-    padding-top: 24px;
-  }
-
-  .training-tabs {
-    gap: 4px;
-    padding: 0 16px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .training-content {
-    padding: 0 24px;
-    gap: 32px;
-  }
-
-  .training-image {
-    height: 200px;
-  }
-
-  .tab-button {
-    padding: 12px;
-    font-size: 14px;
-    white-space: nowrap;
-  }
-
-  .tabs-navigation {
-    flex-wrap: wrap;
-  }
-
-  .tab-button {
-    flex: 1 0 100%;
-  }
-}
-
-@media (max-width: 576px) {
-  .training-detail {
-    padding-top: 16px;
-  }
-
-  .training-tabs,
-  .training-content {
-    padding: 0 16px;
-  }
-
-  .training-image {
-    height: 180px;
-  }
-
-  .tab-button {
-    padding: 10px;
-    font-size: 13px;
-  }
-
-  .tab-section-title h2 {
-    font-size: 20px;
-  }
-
-  .training-title {
-    font-size: 24px;
-  }
-}
-
-/* Touch Device Optimization */
-@media (hover: none) {
-  .training-image:hover img {
-    transform: none;
-  }
-
-  .tab-button {
-    -webkit-tap-highlight-color: transparent;
-  }
-}
-
-/* Safe Area Support */
-@supports (padding: env(safe-area-inset-left)) {
-  .training-tabs,
-  .training-content {
-    padding-left: max(16px, env(safe-area-inset-left));
-    padding-right: max(16px, env(safe-area-inset-right));
-  }
-}
-
-.tab-content {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
+/* Animation */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -753,5 +366,80 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .training-content-layout {
+    flex-direction: column;
+  }
+
+  .right-column {
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .training-hero {
+    height: 280px;
+    padding-top: 100px;
+  }
+  
+  .training-hero-title {
+    font-size: 28px;
+  }
+  
+  .training-content-layout {
+    padding: 24px;
+  }
+  
+  .tab-button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .training-hero {
+    height: 240px;
+    padding-top: 80px;
+  }
+  
+  .training-hero-title {
+    font-size: 24px;
+  }
+  
+  .tabs-navigation {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .training-content-layout {
+    padding: 16px;
+  }
+  
+  .training-image {
+    height: 240px;
+  }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) {
+  .training-image:hover img {
+    transform: none;
+  }
+  
+  .tab-button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Safe Area Support */
+@supports (padding: env(safe-area-inset-left)) {
+  .container {
+    padding-left: max(24px, env(safe-area-inset-left));
+    padding-right: max(24px, env(safe-area-inset-right));
   }
 } 

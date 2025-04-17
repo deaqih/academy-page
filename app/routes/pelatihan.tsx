@@ -22,7 +22,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     .order('created_at', { ascending: false });
     
   // Filter by category if provided
-  if (categoryParam) {
+  if (categoryParam && categoryParam !== 'all') {
     query = query.eq('category', categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1));
   }
   
@@ -49,6 +49,7 @@ export default function Pelatihan() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState("default");
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
   const itemsPerPage = 6;
 
   const categories: CategoryType[] = ["All", "Training", "Consulting", "Assessment"];
@@ -67,6 +68,8 @@ export default function Pelatihan() {
     } else {
       setSearchParams({ category: activeCategory.toLowerCase() });
     }
+    // Reset to page 1 when changing category
+    setCurrentPage(1);
   }, [activeCategory, setSearchParams, searchParams]);
 
   const toggleCategory = (category: string) => {
@@ -79,13 +82,23 @@ export default function Pelatihan() {
   const handleCategoryChange = (category: CategoryType) => {
     setActiveCategory(category);
     setCurrentPage(1);
+    
+    // Close mobile filter if open
+    if (isFilterVisible) {
+      setIsFilterVisible(false);
+    }
   };
 
+  const toggleFilterVisibility = () => {
+    setIsFilterVisible(!isFilterVisible);
+  };
+
+  // Apply local filters (search and sort)
   const filteredTrainings = trainings
     .filter(training => 
       searchQuery 
         ? training.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          training.description.toLowerCase().includes(searchQuery.toLowerCase())
+          (training.description && training.description.toLowerCase().includes(searchQuery.toLowerCase()))
         : true
     );
 
@@ -141,8 +154,17 @@ export default function Pelatihan() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
+              <div className="search-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z" stroke="#718096" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M17.5 17.5L13.875 13.875" stroke="#718096" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
             </div>
-            <div className="top-filter-button">
+            <div 
+              className="top-filter-button"
+              onClick={toggleFilterVisibility}
+            >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M4 21V14M4 10V3M12 21V12M12 8V3M20 21V16M20 12V3M1 14H7M9 8H15M17 16H23" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -161,7 +183,7 @@ export default function Pelatihan() {
           </div>
 
           <div className="pelatihan-content">
-            <div className="categories-sidebar">
+            <div className={`categories-sidebar ${isFilterVisible ? 'mobile-visible' : ''}`}>
               <div className="categories-section">
                 <div 
                   className={`categories-header ${!isCategoryOpen ? 'collapsed' : ''}`}
@@ -194,6 +216,23 @@ export default function Pelatihan() {
                       </li>
                     ))}
                   </ul>
+                  
+                  {isFilterVisible && (
+                    <div className="mobile-filter-actions">
+                      <button 
+                        className="apply-filter-btn"
+                        onClick={() => setIsFilterVisible(false)}
+                      >
+                        Terapkan Filter
+                      </button>
+                      <button 
+                        className="cancel-filter-btn"
+                        onClick={() => setIsFilterVisible(false)}
+                      >
+                        Batal
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

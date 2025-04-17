@@ -111,134 +111,145 @@ export default function TrainingDetail() {
   };
 
   return (
-    <div className="pelatihan-detail">
+    <>
       <Navbar />
       
-      <section className="training-hero">
-        <div className="training-hero-content">
-          <div className="training-breadcrumb">
-            <Link to="/pelatihan">Pelatihan</Link>
-            <span className="training-breadcrumb-separator">/</span>
-            <Link to="/pelatihan">Training</Link>
-            <span className="training-breadcrumb-separator">/</span>
-            <span>Detail Pelatihan</span>
+      <main className="pelatihan-detail">
+        <div className="training-hero">
+          <div className="training-hero-content">
+            <div className="training-breadcrumb">
+              <Link to="/pelatihan">Pelatihan</Link>
+              <span className="training-breadcrumb-separator">/</span>
+              <span>{training.title}</span>
+            </div>
+            <h1 className="training-hero-title">{training.title}</h1>
           </div>
-          <h1 className="training-hero-title">{training.title}</h1>
-        </div>
-      </section>
-
-      <div className="training-detail">
-        <div className="tabs-navigation">
-          <button 
-            className={`tab-button ${activeTab === "overview" ? "active" : ""}`}
-            onClick={() => setActiveTab("overview")}
-          >
-            Overview
-          </button>
-          <button 
-            className={`tab-button ${activeTab === "curriculum" ? "active" : ""}`}
-            onClick={() => setActiveTab("curriculum")}
-          >
-            Curriculum
-          </button>
-          <button 
-            className={`tab-button ${activeTab === "instructor" ? "active" : ""}`}
-            onClick={() => setActiveTab("instructor")}
-          >
-            Instructor
-          </button>
         </div>
 
-        <div className="training-content-layout">
-          <div className="left-column">
-            {activeTab === "instructor" && (
-              <div className="instructor-section">
-                <div className="tab-section-title">
-                  <div className="tab-indicator"></div>
-                  <h2>Public Speaking</h2>
+        <div className="container">
+          <div className="training-detail">
+            <div className="tabs-navigation">
+              <button 
+                className={`tab-button ${activeTab === "overview" ? "active" : ""}`}
+                onClick={() => setActiveTab("overview")}
+              >
+                Overview
+              </button>
+              <button 
+                className={`tab-button ${activeTab === "curriculum" ? "active" : ""}`}
+                onClick={() => setActiveTab("curriculum")}
+              >
+                Curriculum
+              </button>
+              <button 
+                className={`tab-button ${activeTab === "instructor" ? "active" : ""}`}
+                onClick={() => setActiveTab("instructor")}
+              >
+                Instructor
+              </button>
+            </div>
+
+            <div className="training-content-layout">
+              <div className="left-column">
+                <div className={`tab-content ${activeTab === "instructor" ? "active" : ""}`}>
+                  {activeTab === "instructor" && (
+                    <div className="instructor-section">
+                      <div className="instructor-title-box">
+                        <h2>Public Speaking</h2>
+                      </div>
+                      
+                      <div className="instructor-content">
+                        <div className="instructor-profile">
+                          <img src="/images/avatar-default.jpg" alt="Instructor" className="instructor-avatar" />
+                          <div className="instructor-name">Instruktur Ikram Academy</div>
+                        </div>
+                        
+                        <div className="instructor-about">
+                          <h3>About</h3>
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-                
-                <div className="instructor-content">
-                  <div className="instructor-header">
-                    <img src="/images/avatar-default.jpg" alt="Instructor" className="instructor-avatar" />
-                    <div className="instructor-name">Instruktur Ikram Academy</div>
+
+                <div className={`tab-content ${activeTab === "overview" ? "active" : ""}`}>
+                  {activeTab === "overview" && (
+                    <>
+                      <div className="training-image">
+                        <img src={training.image_url || "/images/public-speaking.png"} alt={training.title} />
+                      </div>
+                      <div className="overview-section">
+                        <div className="about-section">
+                          <h3>About</h3>
+                          <p>{training.description}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div className={`tab-content ${activeTab === "curriculum" ? "active" : ""}`}>
+                  {activeTab === "curriculum" && (
+                    <div className="curriculum-section">
+                      <h3>Curriculum</h3>
+                      <div className="curriculum-content">
+                        <p>Content for curriculum will appear here.</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="right-column">
+                <div className="sidebar-training-card">
+                  <div className="sidebar-training-image">
+                    <img src={training.image_url || "/images/public-speaking.png"} alt={training.title} />
                   </div>
                   
-                  <div className="instructor-bio">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <div className="training-card-content">
+                    <span className="training-category">{training.category || "Training"}</span>
+                    <h2 className="training-title">{training.title}</h2>
+                    
+                    <div className="training-stats">
+                      <div className="stat-row">
+                        <div className="stat-label">Durasi Pelatihan</div>
+                        <div className="stat-value">{training.duration || "20 Jam"}</div>
+                      </div>
+                      <div className="stat-row">
+                        <div className="stat-label">Level Pelatihan</div>
+                        <div className="stat-value">{training.level || "Pemula"}</div>
+                      </div>
+                      <div className="stat-row">
+                        <div className="stat-label">Jumlah Peserta</div>
+                        <div className="stat-value">{training.participants || "100 Peserta"}</div>
+                      </div>
+                      <div className="stat-row">
+                        <div className="stat-label">Bahasa</div>
+                        <div className="stat-value">{training.language || "Indonesia"}</div>
+                      </div>
+                      <div className="stat-row">
+                        <div className="stat-label">Sertifikat</div>
+                        <div className="stat-value">Sertifikat Ikram Academy</div>
+                      </div>
+                    </div>
+
+                    <a href={`https://wa.me/6285183198360?text=Halo, saya ingin mengikuti pelatihan ${training.title}`} className="enroll-button">
+                      Enroll Pelatihan Ini
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </a>
                   </div>
                 </div>
               </div>
-            )}
-
-            {activeTab === "overview" && (
-              <div className="about-section">
-                <div className="tab-section-title">
-                  <div className="tab-indicator"></div>
-                  <h2>About</h2>
-                </div>
-                <div className="about-content">
-                  <p>{training.description}</p>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "curriculum" && (
-              <div className="curriculum-section">
-                <div className="tab-section-title">
-                  <div className="tab-indicator"></div>
-                  <h2>Curriculum</h2>
-                </div>
-                <div className="curriculum-content">
-                  <p>Content for curriculum will appear here.</p>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="right-column">
-            <div className="training-image">
-              <img src={training.image || "/images/public-speaking.png"} alt={training.title} />
             </div>
-            
-            <div className="training-category">Training</div>
-            <h2 className="training-card-title">Public Speaking</h2>
-            
-            <div className="training-meta">
-              <div className="meta-item">
-                <span className="meta-label">Durasi Pelatihan</span>
-                <span className="meta-value">20 Jam</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Level Pelatihan</span>
-                <span className="meta-value">Pemula</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Jumlah Peserta</span>
-                <span className="meta-value">100 Peserta</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Bahasa</span>
-                <span className="meta-value">Indonesia</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Sertifikat</span>
-                <span className="meta-value">Sertifikat Ikram Academy</span>
-              </div>
-            </div>
-
-            <a href="#" className="enroll-button">
-              Enroll Pelatihan Ini
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
           </div>
         </div>
-      </div>
-
+      </main>
+      
       <Footer />
-    </div>
+    </>
   );
 } 
