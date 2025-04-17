@@ -773,6 +773,42 @@
   background-clip: text;
   color: transparent;
   text-shadow: none;
+  max-width: 150%;
+  width: 150%;
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+@media (max-width: 1400px) {
+  .hero[data-banner-id="2"] .hero-content h1 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero[data-banner-id="2"] .hero-content h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero[data-banner-id="2"] .hero-content h1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero[data-banner-id="2"] .hero-content h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero[data-banner-id="2"] .hero-content h1 {
+    font-size: 24px;
+  }
 }
 
 @keyframes fadeInUp {
