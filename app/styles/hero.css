@@ -794,20 +794,98 @@
 }
 
 @media (max-width: 992px) {
+  .hero[data-banner-id="2"] {
+    min-height: 750px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-content {
+    max-width: 90%;
+    padding-top: 40px;
+  }
+  
   .hero[data-banner-id="2"] .hero-content h1 {
-    font-size: 32px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .hero[data-banner-id="2"] .hero-image {
+    height: 450px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-image img {
+    margin-right: 0;
+    margin-top: 0;
+    max-width: 90%;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .hero[data-banner-id="2"] .particles {
+    opacity: 0.5;
   }
 }
 
 @media (max-width: 768px) {
-  .hero[data-banner-id="2"] .hero-content h1 {
-    font-size: 28px;
+  .hero[data-banner-id="2"] {
+    min-height: 650px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-content {
+    padding-top: 30px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-image {
+    height: 380px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-image img {
+    max-width: 85%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 73, 122, 0.15);
+  }
+  
+  .hero[data-banner-id="2"] .banner-navigation {
+    margin-top: 20px;
   }
 }
 
 @media (max-width: 576px) {
+  .hero[data-banner-id="2"] {
+    min-height: 580px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-content {
+    padding-top: 20px;
+  }
+  
   .hero[data-banner-id="2"] .hero-content h1 {
-    font-size: 24px;
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-image {
+    height: 320px;
+  }
+  
+  .hero[data-banner-id="2"] .hero-image img {
+    max-width: 80%;
+    border-radius: 10px;
+  }
+  
+  .hero[data-banner-id="2"] .particles {
+    display: none; /* Hide particles on very small screens for better performance */
+  }
+  
+  .hero[data-banner-id="2"]::after {
+    animation: none; /* Disable animation on small screens for better performance */
+  }
+}
+
+/* Safe area improvements for notched devices on banner 2 */
+@supports (padding: env(safe-area-inset-top)) {
+  .hero[data-banner-id="2"] {
+    padding-top: max(64px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
   }
 }
 
