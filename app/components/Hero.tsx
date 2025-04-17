@@ -30,7 +30,16 @@ export default function Hero({ currentBanner, banners }: HeroProps) {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero" data-banner-id={banner.id}>
+        {banner.id === 2 && (
+          <div className="particles">
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+            <div className="particle"></div>
+          </div>
+        )}
         <div className="container hero-container">
           <div className="hero-content">
             <div className={`banner-content ${isAnimating ? `slide-out-${slideDirection}` : ''}`}>
