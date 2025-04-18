@@ -97,6 +97,11 @@
 
 .tab-button:hover {
   color: #0056B3;
+  background-color: rgba(0, 86, 179, 0.05);
+}
+
+.tab-button:active {
+  transform: translateY(1px);
 }
 
 .tab-button.active {
@@ -112,6 +117,18 @@
   width: 100%;
   height: 3px;
   background-color: #0056B3;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    left: 50%;
+  }
+  to {
+    width: 100%;
+    left: 0;
+  }
 }
 
 /* Main Content Layout */
@@ -126,13 +143,29 @@
   flex: 1;
 }
 
+/* Tab Content Styling */
 .tab-content {
-  display: none;
+  display: block;
+  opacity: 1;
+  animation: fadeIn 0.3s ease-in-out;
+  position: relative;
 }
 
 .tab-content.active {
   display: block;
-  animation: fadeIn 0.3s ease;
+  opacity: 1;
+}
+
+/* Animasi tab transition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Instructor Section */
@@ -166,36 +199,48 @@
 .instructor-profile {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 .instructor-avatar {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 16px;
+  border: 4px solid #E6F0FF;
 }
 
 .instructor-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #1A202C;
+  margin-bottom: 6px;
+}
+
+.instructor-title {
+  font-size: 16px;
+  color: #718096;
+}
+
+.instructor-about {
+  background-color: #F9FAFB;
+  border-radius: 8px;
+  padding: 24px;
 }
 
 .instructor-about h3 {
   font-size: 18px;
   font-weight: 600;
   color: #1A202C;
-  margin: 0 0 16px 0;
-  position: relative;
-  padding-left: 12px;
-  border-left: 4px solid #EF4444;
+  margin: 0 0 16px;
 }
 
 .instructor-about p {
-  color: #4A5568;
   font-size: 16px;
+  color: #4A5568;
   line-height: 1.6;
   margin-bottom: 16px;
 }
@@ -357,18 +402,6 @@
   background-color: #004494;
 }
 
-/* Animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Responsive Design */
 @media (max-width: 992px) {
   .training-content-layout {
@@ -442,4 +475,61 @@
     padding-left: max(24px, env(safe-area-inset-left));
     padding-right: max(24px, env(safe-area-inset-right));
   }
+}
+
+/* Styling untuk bagian curriculum */
+.curriculum-items {
+  margin-top: 20px;
+}
+
+.curriculum-item {
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.curriculum-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: #D1E5FF;
+}
+
+.curriculum-item-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background-color: #FFFFFF;
+}
+
+.curriculum-item-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: #0056B3;
+  color: white;
+  border-radius: 50%;
+  font-weight: 600;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.curriculum-item-info {
+  flex: 1;
+}
+
+.curriculum-item-info h4 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1A202C;
+}
+
+.curriculum-item-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  color: #718096;
 } 

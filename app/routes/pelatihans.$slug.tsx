@@ -4,11 +4,27 @@ import { createClient } from "@supabase/supabase-js";
 import styles from "~/styles/pelatihan-detail.css";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
 }
+
+type CurriculumItem = {
+  id: string;
+  training_id: string;
+  title: string;
+  duration: string;
+  order_number: number;
+};
+
+type Instructor = {
+  id: string;
+  name: string;
+  title: string;
+  bio: string;
+  avatar: string;
+};
 
 type Training = {
   id: string;
@@ -19,16 +35,12 @@ type Training = {
   level: string;
   participants: number;
   language: string;
-  instructor: {
-    name: string;
-    title: string;
-    avatar: string;
-  };
-  curriculum: {
-    title: string;
-    duration: string;
-  }[];
-  image: string;
+  instructor_id: string;
+  image_url: string;
+  category: string;
+  created_at: string;
+  instructor: Instructor;
+  curriculum: CurriculumItem[];
 };
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -39,12 +51,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     .select(`
       *,
       instructor:instructors(*),
-      curriculum:curriculum_items(
-        id,
-        title,
-        duration,
-        order_number
-      )
+      curriculum:curriculum_items(*)
     `)
     .eq('slug', params.slug)
     .single();
@@ -53,8 +60,31 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response("Not Found", { status: 404 });
   }
 
-  // Sort curriculum items by order_number
-  training.curriculum.sort((a: any, b: any) => a.order_number - b.order_number);
+  // Ambil detail kurikulum dari tabel curriculum_items
+  const { data: curriculumItems, error: curriculumError } = await supabase
+    .from('curriculum_items')
+    .select('*')
+    .eq('training_id', training.id)
+    .order('order_number', { ascending: true });
+
+  if (curriculumError) {
+    console.error("Error fetching curriculum:", curriculumError);
+  }
+
+  // Ambil detail instruktur dari tabel instructors
+  const { data: instructor, error: instructorError } = await supabase
+    .from('instructors')
+    .select('*')
+    .eq('id', training.instructor_id)
+    .single();
+
+  if (instructorError) {
+    console.error("Error fetching instructor:", instructorError);
+  }
+
+  // Update training object dengan data yang benar
+  training.curriculum = curriculumItems || [];
+  training.instructor = instructor || {};
 
   return json({ training });
 }
@@ -62,51 +92,96 @@ export async function loader({ params }: LoaderFunctionArgs) {
 export default function TrainingDetail() {
   const [activeTab, setActiveTab] = useState("overview");
   const { training } = useLoaderData<typeof loader>();
+  
+  // Debugging dengan useEffect
+  useEffect(() => {
+    console.log("Current tab:", activeTab);
+  }, [activeTab]);
 
-  const renderContent = () => {
-    switch (activeTab) {
+  const handleTabChange = (tab: string) => {
+    console.log(`Changing to tab: ${tab}`);
+    setActiveTab(tab);
+  };
+
+  // Render konten tab berdasarkan activeTab
+  const renderTabContent = () => {
+    switch(activeTab) {
       case "overview":
         return (
-          <div className="overview-section">
-            <div className="about-section">
-              <h2 className="section-title">About</h2>
-              <p>{training.description}</p>
+          <div className="tab-content active">
+            <div className="training-image">
+              <img src={training.image_url || "/images/public-speaking.png"} alt={training.title} />
+            </div>
+            <div className="overview-section">
+              <div className="about-section">
+                <h3>About</h3>
+                <p>{training.description}</p>
+              </div>
             </div>
           </div>
         );
       case "curriculum":
         return (
-          <div className="curriculum-section">
-            <h2 className="section-title">Curriculum</h2>
-            {training.curriculum.map((item: { title: string; duration: string }, index: number) => (
-              <div key={index} className="curriculum-item">
-                <div className="curriculum-header">
-                  <h3 className="curriculum-title">{item.title}</h3>
-                  <span className="curriculum-meta">{item.duration}</span>
-                </div>
+          <div className="tab-content active">
+            <div className="curriculum-section">
+              <h3>Curriculum</h3>
+              <div className="curriculum-content">
+                {training.curriculum && training.curriculum.length > 0 ? (
+                  <div className="curriculum-items">
+                    {training.curriculum.map((item: CurriculumItem, index: number) => (
+                      <div key={item.id} className="curriculum-item">
+                        <div className="curriculum-item-header">
+                          <div className="curriculum-item-number">{index + 1}</div>
+                          <div className="curriculum-item-info">
+                            <h4>{item.title}</h4>
+                            <div className="curriculum-item-meta">
+                              <span>{item.duration || "1 jam"}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p>Belum ada kurikulum tersedia untuk pelatihan ini.</p>
+                )}
               </div>
-            ))}
+            </div>
           </div>
         );
       case "instructor":
         return (
-          <div className="instructor-section">
-            <h2 className="section-title">Instructor</h2>
-            <div className="instructor-info">
-              <img 
-                src={training.instructor.avatar} 
-                alt={training.instructor.name}
-                className="instructor-avatar"
-              />
-              <div>
-                <h3 className="instructor-name">{training.instructor.name}</h3>
-                <p className="instructor-title">{training.instructor.title}</p>
+          <div className="tab-content active">
+            <div className="instructor-section">
+              <div className="instructor-title-box">
+                <h2>{training.title}</h2>
+              </div>
+              
+              <div className="instructor-content">
+                <div className="instructor-profile">
+                  <img 
+                    src={training.instructor?.avatar || "/images/avatar-default.jpg"} 
+                    alt={training.instructor?.name || "Instructor"} 
+                    className="instructor-avatar" 
+                  />
+                  <div className="instructor-name">
+                    {training.instructor?.name || "Instruktur Ikram Academy"}
+                  </div>
+                  <div className="instructor-title">
+                    {training.instructor?.title || "Pengajar Profesional"}
+                  </div>
+                </div>
+                
+                <div className="instructor-about">
+                  <h3>About</h3>
+                  <p>{training.instructor?.bio || "Instruktur profesional dengan pengalaman bertahun-tahun di bidangnya."}</p>
+                </div>
               </div>
             </div>
           </div>
         );
       default:
-        return null;
+        return <div>No content available</div>;
     }
   };
 
@@ -131,19 +206,19 @@ export default function TrainingDetail() {
             <div className="tabs-navigation">
               <button 
                 className={`tab-button ${activeTab === "overview" ? "active" : ""}`}
-                onClick={() => setActiveTab("overview")}
+                onClick={() => handleTabChange("overview")}
               >
                 Overview
               </button>
               <button 
                 className={`tab-button ${activeTab === "curriculum" ? "active" : ""}`}
-                onClick={() => setActiveTab("curriculum")}
+                onClick={() => handleTabChange("curriculum")}
               >
                 Curriculum
               </button>
               <button 
                 className={`tab-button ${activeTab === "instructor" ? "active" : ""}`}
-                onClick={() => setActiveTab("instructor")}
+                onClick={() => handleTabChange("instructor")}
               >
                 Instructor
               </button>
@@ -151,55 +226,8 @@ export default function TrainingDetail() {
 
             <div className="training-content-layout">
               <div className="left-column">
-                <div className={`tab-content ${activeTab === "instructor" ? "active" : ""}`}>
-                  {activeTab === "instructor" && (
-                    <div className="instructor-section">
-                      <div className="instructor-title-box">
-                        <h2>Public Speaking</h2>
-                      </div>
-                      
-                      <div className="instructor-content">
-                        <div className="instructor-profile">
-                          <img src="/images/avatar-default.jpg" alt="Instructor" className="instructor-avatar" />
-                          <div className="instructor-name">Instruktur Ikram Academy</div>
-                        </div>
-                        
-                        <div className="instructor-about">
-                          <h3>About</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className={`tab-content ${activeTab === "overview" ? "active" : ""}`}>
-                  {activeTab === "overview" && (
-                    <>
-                      <div className="training-image">
-                        <img src={training.image_url || "/images/public-speaking.png"} alt={training.title} />
-                      </div>
-                      <div className="overview-section">
-                        <div className="about-section">
-                          <h3>About</h3>
-                          <p>{training.description}</p>
-                        </div>
-                      </div>
-                    </>
-                  )}
-                </div>
-
-                <div className={`tab-content ${activeTab === "curriculum" ? "active" : ""}`}>
-                  {activeTab === "curriculum" && (
-                    <div className="curriculum-section">
-                      <h3>Curriculum</h3>
-                      <div className="curriculum-content">
-                        <p>Content for curriculum will appear here.</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                {/* Render content dengan fungsi */}
+                {renderTabContent()}
               </div>
 
               <div className="right-column">

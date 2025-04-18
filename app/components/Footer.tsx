@@ -30,9 +30,9 @@ export default function Footer({ type = "Dark" }: FooterProps) {
             <div className="link-group">
               <h3>Layanan</h3>
               <ul>
-                <li><a href="/pelatihan">Training</a></li>
-                <li><a href="/pelatihan">Consulting</a></li>
-                <li><a href="/pelatihan">Assessment</a></li>
+                <li><a href="/pelatihan?category=training">Training</a></li>
+                <li><a href="/pelatihan?category=consulting">Consulting</a></li>
+                <li><a href="/pelatihan?category=assessment">Assessment</a></li>
               </ul>
             </div>
 
