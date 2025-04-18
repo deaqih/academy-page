@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { json, LoaderFunctionArgs } from "@remix-run/node";
-import { Link, useLoaderData, useSearchParams } from "@remix-run/react";
+import { json, LoaderFunctionArgs, redirect } from "@remix-run/node";
+import { Link, useLoaderData, useSearchParams, useNavigate, Form } from "@remix-run/react";
 import { createClient } from "@supabase/supabase-js";
 import styles from "~/styles/pelatihan.css";
 import Navbar from "~/components/Navbar";
@@ -13,32 +13,71 @@ export function links() {
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const categoryParam = url.searchParams.get("category");
+  const queryParam = url.searchParams.get("query") || "";
+  const sortParam = url.searchParams.get("sort") || "default";
   
   const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_ANON_KEY!);
   
   let query = supabase
     .from('trainings')
-    .select('*')
-    .order('created_at', { ascending: false });
+    .select('*');
     
   // Filter by category if provided
   if (categoryParam && categoryParam !== 'all') {
-    query = query.eq('category', categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1));
+    // Convert first letter to uppercase for proper category matching
+    const formattedCategory = categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1);
+    console.log("Filtering by category:", formattedCategory);
+    query = query.eq('category', formattedCategory);
+  }
+  
+  // Apply text search if query is provided
+  if (queryParam) {
+    query = query.or(`title.ilike.%${queryParam}%,description.ilike.%${queryParam}%`);
+  }
+  
+  // Apply sorting
+  if (sortParam === "newest") {
+    query = query.order('created_at', { ascending: false });
+  } else if (sortParam === "oldest") {
+    query = query.order('created_at', { ascending: true });
+  } else {
+    query = query.order('created_at', { ascending: false }); // Default sort
   }
   
   const { data: trainings, error } = await query;
 
   if (error) {
+    console.error("Error fetching trainings:", error);
     throw new Error('Failed to fetch trainings');
   }
 
-  return json({ trainings, selectedCategory: categoryParam });
+  // Log filtered results count
+  console.log(`Found ${trainings?.length || 0} trainings for category: ${categoryParam || 'All'}`);
+
+  return json({ 
+    trainings, 
+    selectedCategory: categoryParam,
+    searchQuery: queryParam,
+    sortOrder: sortParam
+  });
+}
+
+export async function action({ request }: LoaderFunctionArgs) {
+  const formData = await request.formData();
+  const category = formData.get("category") as string;
+  
+  // Redirect ke halaman dengan parameter kategori yang sesuai
+  if (category === "All") {
+    return redirect("/pelatihan");
+  } else {
+    return redirect(`/pelatihan?category=${category.toLowerCase()}`);
+  }
 }
 
 type CategoryType = "All" | "Training" | "Consulting" | "Assessment";
 
 export default function Pelatihan() {
-  const { trainings, selectedCategory } = useLoaderData<typeof loader>();
+  const { trainings, selectedCategory, searchQuery: initialSearchQuery, sortOrder: initialSortOrder } = useLoaderData<typeof loader>();
   const [searchParams, setSearchParams] = useSearchParams();
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
   const [activeCategory, setActiveCategory] = useState<CategoryType>(
@@ -46,10 +85,11 @@ export default function Pelatihan() {
       ? (selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)) as CategoryType
       : "All"
   );
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery || "");
+  const [sortOrder, setSortOrder] = useState(initialSortOrder || "default");
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState("default");
   const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const itemsPerPage = 6;
 
   const categories: CategoryType[] = ["All", "Training", "Consulting", "Assessment"];
@@ -59,18 +99,65 @@ export default function Pelatihan() {
     Assessment: false
   });
 
-  // Update URL when category changes
+  const navigate = useNavigate();
+
+  // Update search params when filters change
   useEffect(() => {
+    const newParams = new URLSearchParams(searchParams);
+    
     if (activeCategory === "All") {
-      const newParams = new URLSearchParams(searchParams);
       newParams.delete("category");
-      setSearchParams(newParams);
     } else {
-      setSearchParams({ category: activeCategory.toLowerCase() });
+      newParams.set("category", activeCategory.toLowerCase());
     }
-    // Reset to page 1 when changing category
+    
+    if (searchQuery) {
+      newParams.set("query", searchQuery);
+    } else {
+      newParams.delete("query");
+    }
+    
+    if (sortOrder !== "default") {
+      newParams.set("sort", sortOrder);
+    } else {
+      newParams.delete("sort");
+    }
+    
+    // Only update the URL if we aren't currently typing in the search box
+    if (!isSearching) {
+      setSearchParams(newParams);
+    }
+    
+    // Reset to page 1 when filters change
     setCurrentPage(1);
-  }, [activeCategory, setSearchParams, searchParams]);
+  }, [activeCategory, searchQuery, sortOrder, searchParams, setSearchParams, isSearching]);
+
+  // Separate useEffect to update URL params to avoid excessive reloads
+  useEffect(() => {
+    if (isSearching) return; // Don't update URL while user is typing
+    
+    const newParams = new URLSearchParams();
+    
+    if (activeCategory !== "All") {
+      newParams.set("category", activeCategory.toLowerCase());
+    }
+    
+    if (searchQuery) {
+      newParams.set("query", searchQuery);
+    }
+    
+    if (sortOrder !== "default") {
+      newParams.set("sort", sortOrder);
+    }
+    
+    // Compare if params actually changed before updating
+    const currentParamsString = searchParams.toString();
+    const newParamsString = newParams.toString();
+    
+    if (currentParamsString !== newParamsString) {
+      setSearchParams(newParams);
+    }
+  }, [activeCategory, searchQuery, sortOrder, isSearching, setSearchParams, searchParams]);
 
   const toggleCategory = (category: string) => {
     setExpandedCategories({
@@ -79,11 +166,16 @@ export default function Pelatihan() {
     });
   };
 
-  const handleCategoryChange = (category: CategoryType) => {
+  const handleCategoryClick = (category: CategoryType) => {
     setActiveCategory(category);
     setCurrentPage(1);
     
-    // Close mobile filter if open
+    if (category === "All") {
+      navigate("/pelatihan");
+    } else {
+      navigate(`/pelatihan?category=${category.toLowerCase()}`);
+    }
+    
     if (isFilterVisible) {
       setIsFilterVisible(false);
     }
@@ -92,32 +184,30 @@ export default function Pelatihan() {
   const toggleFilterVisibility = () => {
     setIsFilterVisible(!isFilterVisible);
   };
-
-  // Apply local filters (search and sort)
-  const filteredTrainings = trainings
-    .filter(training => 
-      searchQuery 
-        ? training.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          (training.description && training.description.toLowerCase().includes(searchQuery.toLowerCase()))
-        : true
-    );
-
-  const sortedTrainings = [...filteredTrainings].sort((a, b) => {
-    if (sortOrder === "newest") {
-      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-    } else if (sortOrder === "oldest") {
-      return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+  
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setIsSearching(true);
+  };
+  
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      setIsSearching(false);
     }
-    return 0;
-  });
+  };
+  
+  const handleSearchBlur = () => {
+    setIsSearching(false);
+  };
+  
+  const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortOrder(e.target.value);
+  };
 
-  const totalPages = Math.ceil(sortedTrainings.length / itemsPerPage);
+  // Calculate pagination
+  const totalPages = Math.ceil(trainings.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedTrainings = sortedTrainings.slice(startIndex, startIndex + itemsPerPage);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchQuery]);
+  const paginatedTrainings = trainings.slice(startIndex, startIndex + itemsPerPage);
 
   const truncateText = (text: string, maxLength: number = 120): string => {
     if (!text) return '';
@@ -152,7 +242,9 @@ export default function Pelatihan() {
                 type="text" 
                 placeholder="Cari" 
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleSearchChange}
+                onKeyDown={handleSearchKeyDown}
+                onBlur={handleSearchBlur}
               />
               <div className="search-icon">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -162,18 +254,18 @@ export default function Pelatihan() {
               </div>
             </div>
             <div 
-              className="top-filter-button"
+              className={`top-filter-button ${activeCategory !== "All" ? "active" : ""}`}
               onClick={toggleFilterVisibility}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M4 21V14M4 10V3M12 21V12M12 8V3M20 21V16M20 12V3M1 14H7M9 8H15M17 16H23" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span>Filter</span>
+              <span>Filter {activeCategory !== "All" ? `(${activeCategory})` : ""}</span>
             </div>
             <div className="top-sort-filter">
               <select 
                 value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
+                onChange={handleSortChange}
               >
                 <option value="default">Sort By: Default</option>
                 <option value="newest">Terbaru</option>
@@ -200,19 +292,59 @@ export default function Pelatihan() {
                       <li 
                         key={category}
                         className={`category-item-sidebar ${activeCategory === category ? 'active' : ''}`} 
-                        onClick={() => handleCategoryChange(category)}
                       >
-                        <div className="category-name">
-                          {category}
-                        </div>
-                        {category !== 'All' && (
-                          <span onClick={(e) => {
-                            e.stopPropagation();
-                            toggleCategory(category);
-                          }}>
-                            {expandedCategories[category] ? '-' : '+'}
-                          </span>
-                        )}
+                        <Form method="post">
+                          <input type="hidden" name="category" value={category} />
+                          <button 
+                            type="submit"
+                            className="category-link"
+                            onClick={() => {
+                              // Update state lokal juga untuk immediate feedback
+                              setActiveCategory(category);
+                              
+                              // Close mobile filter if open
+                              if (isFilterVisible) {
+                                setIsFilterVisible(false);
+                              }
+                            }}
+                          >
+                            <div className="category-name">
+                              {category === "All" && (
+                                <svg className="category-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              )}
+                              {category === "Training" && (
+                                <svg className="category-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 6.25278V19.2528M12 6.25278C10.8321 5.47686 9.24649 5 7.5 5C5.75351 5 4.16789 5.47686 3 6.25278V19.2528C4.16789 18.4769 5.75351 18 7.5 18C9.24649 18 10.8321 18.4769 12 19.2528M12 6.25278C13.1679 5.47686 14.7535 5 16.5 5C18.2465 5 19.8321 5.47686 21 6.25278V19.2528C19.8321 18.4769 18.2465 18 16.5 18C14.7535 18 13.1679 18.4769 12 19.2528" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              )}
+                              {category === "Consulting" && (
+                                <svg className="category-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M8 9H16M8 13H14M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              )}
+                              {category === "Assessment" && (
+                                <svg className="category-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5M12 12H15M12 16H15M9 12H9.01M9 16H9.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                              )}
+                              {category}
+                            </div>
+                            {category !== "All" && (
+                              <span 
+                                className="category-expand" 
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  toggleCategory(category);
+                                }}
+                              >
+                                {expandedCategories[category as Exclude<CategoryType, "All">] ? '-' : '+'}
+                              </span>
+                            )}
+                          </button>
+                        </Form>
                       </li>
                     ))}
                   </ul>
@@ -248,7 +380,9 @@ export default function Pelatihan() {
                     >
                       <img src={training.image_url} alt={training.title} />
                       <div className="card-content">
-                        <span className="category">{training.category}</span>
+                        <span className="category" data-category={training.category || "Training"}>
+                          {training.category || "Training"}
+                        </span>
                         <h3>{training.title}</h3>
                         <p>{truncateText(training.description, 120)}</p>
                       </div>
@@ -257,6 +391,17 @@ export default function Pelatihan() {
                 ) : (
                   <div className="no-results">
                     <p>Tidak ada pelatihan yang ditemukan.</p>
+                    <button 
+                      className="reset-filter-btn"
+                      onClick={() => {
+                        setSearchQuery("");
+                        setActiveCategory("All");
+                        setSortOrder("default");
+                        setSearchParams({});
+                      }}
+                    >
+                      Reset Filter
+                    </button>
                   </div>
                 )}
               </div>
@@ -264,7 +409,7 @@ export default function Pelatihan() {
               {paginatedTrainings.length > 0 && (
                 <div className="pagination">
                   <div className="pagination-info">
-                    Menampilkan: {currentPage * itemsPerPage - itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, filteredTrainings.length)} dari {filteredTrainings.length}
+                    Menampilkan: {currentPage * itemsPerPage - itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, trainings.length)} dari {trainings.length}
                   </div>
                   <div className="pagination-controls">
                     <button 
