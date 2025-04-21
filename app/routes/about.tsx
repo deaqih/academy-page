@@ -267,7 +267,7 @@ export default function About() {
           <div className="title-underline"></div>
           <div className="expert-content">
             <div className="expert-image">
-              <img src="/images/ahli.png" alt="CEO Ikram Academy" />
+              <img src="/images/ceo-ikram.jpg" alt="CEO Ikram Academy" />
             </div>
             <div className="expert-text">
               <h3>Menjadi Mitra Pilihan Terbaik Anda!</h3>
