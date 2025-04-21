@@ -211,6 +211,9 @@ export default function About() {
                   <h5>Daya Juang dan Pemikiran Kritis</h5>
                   <p>Membangun ekosistem pendidikan yang mendorong daya juang, pemikiran kritis, serta inovasi</p>
                 </div>
+              </div>
+              
+              <div className="misi-grid misi-grid-centered">
                 <div className="misi-card">
                   <div className="card-icon">
                     <img 
