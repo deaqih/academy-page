@@ -34,7 +34,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
       .from("articles")
       .select("id, title, image_url, author, publish_date, slug")
       .neq("slug", slug)
-      .limit(3);
+      .limit(6);
 
     console.log("Related articles:", relatedArticles);
     console.log("Related error:", relatedError);
@@ -124,7 +124,7 @@ export default function ArticleDetail() {
                 {relatedArticles.map((related) => (
                   <Link 
                     key={related.id} 
-                    to={`/artikel/${related.slug}`} 
+                    to={`/artikels/${related.slug}`} 
                     className="article-card"
                   >
                     <img src={related.image_url} alt={related.title} />
