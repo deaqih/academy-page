@@ -90,6 +90,8 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  z-index: 99999; /* Tambahkan ini */
+  position: relative; /* Pastikan ada positioning context */
 }
 
 .mobile-menu-button svg {
@@ -186,7 +188,7 @@
   }
 
   .mobile-menu-button {
-    display: block;
+    display: block !important;
   }
 
   .mobile-menu {
@@ -201,7 +203,7 @@
     padding: 16px;
     margin-top: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
+    /* z-index: 9999; */
     animation: slideDown 0.3s ease-out;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
