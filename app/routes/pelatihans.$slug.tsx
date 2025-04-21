@@ -203,6 +203,13 @@ export default function TrainingDetail() {
 
         <div className="container">
           <div className="training-detail">
+            {/* Mobile-only sidebar for small screens */}
+            <div className="mobile-sidebar">
+              <div className="mobile-category-badge">
+                <span className="training-category">{training.category || "Training"}</span>
+              </div>
+            </div>
+
             <div className="tabs-navigation">
               <button 
                 className={`tab-button ${activeTab === "overview" ? "active" : ""}`}
