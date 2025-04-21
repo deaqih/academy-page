@@ -36,16 +36,16 @@ export type LoaderData = {
 
 const BANNERS: Banner[] = [
   {
-    id: 2,
-    title: "Tingkatkan **Keahlian**, Wujudkan **Impian**!",
-    description: "Ikram Academy hadir sebagai tempat pelatihan terbaik untuk membantumu meningkatkan keahlian dan mewujudkan impian. Dengan program pembelajaran yang terarah dan instruktur berpengalaman, kami siap mendampingi setiap langkahmu menuju masa depan yang lebih cerah.",
-    image: "/images/hero-image2.png"
-  },
-  {
     id: 1,
     title: "Unggul dalam Akhlak, Produktif dalam ilmu pengetahuan dan teknologi",
     description: "",
     image: "/images/hero-image.png"
+  },
+  {
+    id: 2,
+    title: "Tingkatkan **Keahlian**, Wujudkan **Impian**!",
+    description: "Ikram Academy hadir sebagai tempat pelatihan terbaik untuk membantumu meningkatkan keahlian dan mewujudkan impian. Dengan program pembelajaran yang terarah dan instruktur berpengalaman, kami siap mendampingi setiap langkahmu menuju masa depan yang lebih cerah.",
+    image: "/images/hero-image2.png"
   }
 ];
 
