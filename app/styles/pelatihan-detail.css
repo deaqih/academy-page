@@ -88,9 +88,10 @@
 .training-breadcrumb a,
 .training-breadcrumb span {
   color: #338ABE;
-  font-size: 24px;
+  font-size: 20px;
   text-decoration: none;
   font-weight: 500;
+  font-family: 'Poppins', sans-serif;
 }
 
 .training-breadcrumb a {
@@ -131,6 +132,7 @@
   max-width: 800px;
   margin: 0 auto;
   position: relative;
+  font-family: 'Poppins', sans-serif;
 }
 
 /* .training-hero-title::after {
@@ -926,7 +928,7 @@
 @media (max-width: 768px) {
   .training-hero {
     height: auto;
-    min-height: 320px;
+    min-height: 400px;
     padding-top: 120px;
     padding-bottom: 80px;
   }

@@ -122,11 +122,11 @@ export default function TrainingDetail() {
         <div className="container">
           <div className="training-detail">
             {/* Mobile-only sidebar for small screens */}
-            <div className="mobile-sidebar">
+            {/* <div className="mobile-sidebar">
               <div className="mobile-category-badge">
                 <span className="training-category" data-category={training.category}>{training.category || "Training"}</span>
               </div>
-            </div>
+            </div> */}
 
             <div className="tabs-navigation mobile-friendly-tabs">
               <div className="mobile-tabs-indicator"></div>
@@ -166,7 +166,7 @@ export default function TrainingDetail() {
                         <p>{training.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."}</p>
                       </div>
                       
-                      <div className="training-highlights">
+                      {/* <div className="training-highlights">
                         <h3>What You'll Learn</h3>
                         <div className="highlights-grid">
                           <div className="highlight-item">
@@ -224,7 +224,7 @@ export default function TrainingDetail() {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   
