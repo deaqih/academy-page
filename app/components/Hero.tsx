@@ -11,12 +11,30 @@ interface HeroProps {
     title: string;
     description: string;
     image: string;
+    backgroundColor?: string;
+    textColor?: string;
+    imageBgColor?: string;
   }>;
 }
 
 export default function Hero({ currentBanner, banners }: HeroProps) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [slideDirection, setSlideDirection] = useState<'next' | 'prev'>('next');
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   const handleSubmit = (direction: 'next' | 'prev') => () => {
     if (!isAnimating) {
@@ -30,7 +48,14 @@ export default function Hero({ currentBanner, banners }: HeroProps) {
 
   return (
     <>
-      <section className="hero" data-banner-id={banner.id}>
+      <section 
+        className={`hero ${isMobile ? 'mobile-friendly' : ''}`}
+        style={{ 
+          backgroundColor: banner.backgroundColor, 
+          color: banner.textColor
+        }}
+        data-banner-id={banner.id}
+      >
         {banner.id === 2 && (
           <div className="particles">
             <div className="particle"></div>
@@ -69,6 +94,15 @@ export default function Hero({ currentBanner, banners }: HeroProps) {
                   </svg>
                 </button>
               </Form>
+              <div className="banner-indicators">
+                {banners.map((_, index) => (
+                  <div 
+                    key={index} 
+                    className={`banner-indicator ${index === activeIndex ? 'active' : ''}`}
+                    onClick={() => setActiveIndex(index)}
+                  />
+                ))}
+              </div>
               <Form method="post" onSubmit={handleSubmit('next')}>
                 <input type="hidden" name="currentBanner" value={currentBanner} />
                 <input type="hidden" name="action" value="next" />
@@ -91,6 +125,8 @@ export default function Hero({ currentBanner, banners }: HeroProps) {
               src={banner.image} 
               alt="Ikram Academy Team"
               className={isAnimating ? `slide-in-${slideDirection}` : ''}
+              loading="eager"
+              style={{ backgroundColor: banner.imageBgColor }}
             />
           </div>
         </div>

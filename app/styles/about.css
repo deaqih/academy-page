@@ -191,7 +191,7 @@
   color: #FFFFFF;
 }
 
-/* Add smooth scrolling to the whole page */
+/* Global smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
@@ -1326,5 +1326,82 @@ html {
   .agenda-item:hover {
     transform: none;
     box-shadow: none;
+  }
+}
+
+/* Mobile Slider Navigation */
+.mobile-nav-slider {
+  display: none;
+  width: 100%;
+  overflow-x: auto;
+  position: sticky;
+  top: 60px;
+  background-color: #005C98;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  padding: 12px 0;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.mobile-nav-slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.slider-container {
+  width: 100%;
+  padding: 0 16px;
+}
+
+.slider-track {
+  display: flex;
+  gap: 16px;
+}
+
+.slider-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 8px 16px;
+  white-space: nowrap;
+  border-radius: 100px;
+  background-color: #005C98;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.slider-item:hover,
+.slider-item.active {
+  background-color: #EDF2F7;
+  color: #005C98;
+}
+
+/* Slider active item styling */
+.slider-item.active {
+  background-color: #005C98;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0, 92, 152, 0.2);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-nav-slider {
+    display: block;
+  }
+  
+  /* Adjust section padding for better mobile scroll targets */
+  section {
+    scroll-margin-top: 80px;
+  }
+  
+  /* Better slider positioning */
+  .mobile-nav-slider {
+    top: 0px;
+    /* padding: 12px 0; */
+    /* margin-bottom: 20px; */
   }
 } 

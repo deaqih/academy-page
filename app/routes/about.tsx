@@ -29,41 +29,60 @@ export default function About() {
   const { trainings } = useLoaderData<typeof loader>() as LoaderData;
 
   useEffect(() => {
-    const sections = ['nilai-ikram', 'tenaga-ahli', 'program'];
+    const sections = ['nilai-ikram', 'tenaga-ahli', 'program', 'sejarah', 'mitra'];
     const navLinks = document.querySelectorAll<HTMLAnchorElement>('.values-nav a');
+    const sliderItems = document.querySelectorAll<HTMLAnchorElement>('.slider-item');
 
     // Handle scroll
     const handleScroll = () => {
       sections.forEach(sectionId => {
         const section = document.getElementById(sectionId);
-        const link = document.querySelector(`.values-nav a[href="#${sectionId}"]`);
+        const desktopLink = document.querySelector(`.values-nav a[href="#${sectionId}"]`);
+        const mobileLink = document.querySelector(`.slider-item[href="#${sectionId}"]`);
         
-        if (section && link) {
+        if (section) {
           const rect = section.getBoundingClientRect();
           const isInView = rect.top <= 150 && rect.bottom >= 150;
           
           if (isInView) {
-            link.classList.add('active');
+            desktopLink?.classList.add('active');
+            mobileLink?.classList.add('active');
+            
+            // Scroll into view for mobile slider
+            if (mobileLink && window.innerWidth <= 768) {
+              const sliderContainer = document.querySelector('.mobile-nav-slider');
+              if (sliderContainer) {
+                sliderContainer.scrollLeft = mobileLink.offsetLeft - sliderContainer.clientWidth / 2 + mobileLink.clientWidth / 2;
+              }
+            }
           } else {
-            link.classList.remove('active');
+            desktopLink?.classList.remove('active');
+            mobileLink?.classList.remove('active');
           }
         }
       });
     };
 
     // Handle click
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const href = link.getAttribute('href');
-        if (href) {
-          const targetId = href.replace('#', '');
-          const targetSection = document.getElementById(targetId);
-          if (targetSection) {
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-          }
+    const handleLinkClick = (e: MouseEvent, links: NodeListOf<HTMLAnchorElement>) => {
+      e.preventDefault();
+      const target = e.currentTarget as HTMLAnchorElement;
+      const href = target.getAttribute('href');
+      if (href) {
+        const targetId = href.replace('#', '');
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
         }
-      });
+      }
+    };
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => handleLinkClick(e, navLinks));
+    });
+
+    sliderItems.forEach(item => {
+      item.addEventListener('click', (e) => handleLinkClick(e, sliderItems));
     });
 
     window.addEventListener('scroll', handleScroll);
@@ -71,6 +90,14 @@ export default function About() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      
+      navLinks.forEach(link => {
+        link.removeEventListener('click', (e) => handleLinkClick(e, navLinks));
+      });
+      
+      sliderItems.forEach(item => {
+        item.removeEventListener('click', (e) => handleLinkClick(e, sliderItems));
+      });
     };
   }, []);
 
@@ -110,7 +137,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="values-nav">
+      <div className="values-nav desktop-nav">
         <nav>
           <ul>
             <li><a href="#nilai-ikram">Nilai Ikram</a></li>
@@ -120,6 +147,19 @@ export default function About() {
             <li><a href="#mitra">Klien & Mitra</a></li>
           </ul>
         </nav>
+      </div>
+
+      {/* Mobile Slider Navigation */}
+      <div className="mobile-nav-slider">
+        <div className="slider-container">
+          <div className="slider-track">
+            <a href="#nilai-ikram" className="slider-item">Nilai Ikram</a>
+            <a href="#tenaga-ahli" className="slider-item">Tenaga Ahli</a>
+            <a href="#program" className="slider-item">Program</a>
+            <a href="#sejarah" className="slider-item">Sejarah</a>
+            <a href="#mitra" className="slider-item">Klien & Mitra</a>
+          </div>
+        </div>
       </div>
 
       {/* Values Section */}
