@@ -28,8 +28,8 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
               <div className="service-icon">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                   {/* Training icon */}
-                  <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                  <path d="M32 19H16M32 19L28 15M32 19L28 23M16 29H32M16 29L20 25M16 29L20 33" stroke="#0056B3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="24" cy="24" r="24" fill="#E6F3FF" />
+                  <path d="M32 19H16M32 19L28 15M32 19L28 23M16 29H32M16 29L20 25M16 29L20 33" stroke="#0056B3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <h3>Training</h3>
@@ -40,9 +40,9 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
               <div className="service-icon">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                   {/* Consulting icon */}
-                  <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                  <path d="M24 32C28.4183 32 32 28.4183 32 24C32 19.5817 28.4183 16 24 16C19.5817 16 16 19.5817 16 24C16 28.4183 19.5817 32 24 32Z" stroke="#0056B3" strokeWidth="2"/>
-                  <path d="M24 20V24L26 26" stroke="#0056B3" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="24" cy="24" r="24" fill="#E6F3FF" />
+                  <path d="M24 32C28.4183 32 32 28.4183 32 24C32 19.5817 28.4183 16 24 16C19.5817 16 16 19.5817 16 24C16 28.4183 19.5817 32 24 32Z" stroke="#0056B3" strokeWidth="2" />
+                  <path d="M24 20V24L26 26" stroke="#0056B3" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </div>
               <h3>Consulting</h3>
@@ -53,8 +53,8 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
               <div className="service-icon">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                   {/* Assessment icon */}
-                  <circle cx="24" cy="24" r="24" fill="#E6F3FF"/>
-                  <path d="M32 20L22 30L16 24" stroke="#0056B3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="24" cy="24" r="24" fill="#E6F3FF" />
+                  <path d="M32 20L22 30L16 24" stroke="#0056B3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <h3>Assessment</h3>
@@ -68,7 +68,7 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
               <Link to="/pelatihan" className="all-programs-btn">
                 Semua Pelatihan
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>
             </div>
@@ -76,8 +76,8 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
             <div className="programs-grid">
               {trainings && trainings.length > 0 ? (
                 trainings.map((training) => (
-                  <Link 
-                    key={training.id} 
+                  <Link
+                    key={training.id}
                     to={`/pelatihans/${training.slug}`}
                     className="program-card"
                   >
@@ -108,19 +108,25 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
             <div className="highlight-text">
               <h2>Tentang Ikram</h2>
               <p>
-                PT Insan Kreasi Semesta Mulia (IKRAM) merupakan perusahaan nasional yang 
+                PT Insan Kreasi Semesta Mulia (IKRAM) merupakan perusahaan nasional yang
                 bergerak di bidang Pelatihan, Konsultasi, Assesment Program.
               </p>
               <p>
-                Berfokus pada pengembangan akhlak, ilmu pengetahuan dan teknologi. 
-                Kami hadir untuk membantu anda tumbuh dan berkembang dengan 
-                beragam pelatihan pilihan yang dapat disesuaikan dengan kebutuhan 
+                Berfokus pada pengembangan akhlak, ilmu pengetahuan dan teknologi.
+                Kami hadir untuk membantu anda tumbuh dan berkembang dengan
+                beragam pelatihan pilihan yang dapat disesuaikan dengan kebutuhan
                 klien.
               </p>
-              <button className="button primary-red">
+              <button
+                className="button primary-red"
+                onClick={() => {
+                  window.location.href = '/about';
+                  return false;
+                }}
+              >
                 <span>Selengkapnya</span>
                 <svg className="nav-arrow-right" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
             </div>
@@ -134,30 +140,25 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
       <section className="expert-staff">
         <div className="container">
           <div className="expert-staff-header">
-            <h2>Menyediakan Tenaga Ahli<br /><span>No. 1 dan Berintegritas</span></h2>
+            <h2>Berpengalaman<br /><span>dan Berintegritas</span></h2>
           </div>
 
           <div className="expert-staff-content">
             <h3>Tenaga Ahli</h3>
-            
+
             <div className="expert-staff-grid">
               <div className="expert-staff-image">
                 <img src="/images/ceo-ikram.jpg" alt="CEO Ikram Academy Indonesia" />
               </div>
               <div className="expert-staff-info">
-                <h4>Menjadi Mitra Pilihan Terbaik Anda!</h4>
+                <h4>Tenaga Ahli Profesional & Terpercaya di Ikram Academy Indonesia</h4>
                 <p>
-                  ​Kami berkomitmen menjadi mitra terpercaya dalam mewujudkan 
-                  pendidikan berkualitas yang menghasilkan individu unggul, berdaya 
-                  saing, dan berdampak positif bagi masyarakat. Melalui pelatihan, 
-                  konsultasi, dan asesmen inovatif yang mudah diakses, kami membangun 
-                  ekosistem pendidikan yang mendorong daya juang, pemikiran kritis, 
-                  serta inovasi. Program kami dirancang untuk membentuk karakter 
-                  mulia, profesional, dan berintegritas, mempersiapkan individu 
-                  kompeten yang siap bersaing di dunia industri.
+                  Di Ikram Academy Indonesia, kami bangga menghadirkan para instruktur dan tenaga ahli bersertifikasi yang telah berpengalaman di bidangnya. Setiap program yang kami tawarkan dirancang dengan standar kualitas tinggi dan didukung oleh tim profesional yang memahami kebutuhan industri dan dunia kerja saat ini.
+                  <br /> <br/>
+                  Kami tidak hanya mengajarkan teori, tetapi juga membekali peserta dengan keterampilan praktis, relevan, dan aplikatif. Dengan pendekatan yang berfokus pada hasil, serta integritas dan komitmen terhadap mutu, Ikram Academy Indonesia menjadi mitra pelatihan yang dapat diandalkan oleh individu, institusi, dan perusahaan dalam mengembangkan potensi dan daya saing.
                 </p>
                 <div className="expert-staff-signature">
-                  <h5>CEO of Ikram Academy Indonesia</h5>
+                  <h5>Ikram Academy Indonesia</h5>
                   {/* <span>CEO of Ikram Academy Indonesia</span> */}
                 </div>
               </div>
@@ -207,7 +208,7 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
             <Link to="/artikel" className="button outline-white">
               <span>Semua Artikel</span>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4.16669 8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
           </div>

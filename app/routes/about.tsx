@@ -1,5 +1,5 @@
 import styles from "~/styles/about.css";
-import { links as navbarLinks } from "~/components/Navbar";
+// import { links as navbarLinks } from "~/components/Navbar";
 import Footer from "~/components/Footer";
 import Navbar from "~/components/Navbar";
 import { useEffect } from "react";
@@ -39,20 +39,20 @@ export default function About() {
         const section = document.getElementById(sectionId);
         const desktopLink = document.querySelector(`.values-nav a[href="#${sectionId}"]`);
         const mobileLink = document.querySelector(`.slider-item[href="#${sectionId}"]`);
-        
+
         if (section) {
           const rect = section.getBoundingClientRect();
           const isInView = rect.top <= 150 && rect.bottom >= 150;
-          
+
           if (isInView) {
             desktopLink?.classList.add('active');
             mobileLink?.classList.add('active');
-            
+
             // Scroll into view for mobile slider
             if (mobileLink && window.innerWidth <= 768) {
               const sliderContainer = document.querySelector('.mobile-nav-slider');
               if (sliderContainer) {
-                sliderContainer.scrollLeft = mobileLink.offsetLeft - sliderContainer.clientWidth / 2 + mobileLink.clientWidth / 2;
+                sliderContainer.scrollLeft = (mobileLink as HTMLElement).offsetLeft - sliderContainer.clientWidth / 2 + (mobileLink as HTMLElement).clientWidth / 2;
               }
             }
           } else {
@@ -90,11 +90,11 @@ export default function About() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      
+
       navLinks.forEach(link => {
         link.removeEventListener('click', (e) => handleLinkClick(e, navLinks));
       });
-      
+
       sliderItems.forEach(item => {
         item.removeEventListener('click', (e) => handleLinkClick(e, sliderItems));
       });
@@ -117,7 +117,7 @@ export default function About() {
           </h1>
         </div>
       </section>
-      
+
       <div className="about-content">
         <div className="container">
           <div className="content-wrapper">
@@ -182,10 +182,10 @@ export default function About() {
               <h4>Visi Ikram</h4>
               <div className="visi-card">
                 <div className="card-icon">
-                  <img 
-                    src="/images/icon/visi.png" 
-                    alt="Check Circle Icon" 
-                    width="64" 
+                  <img
+                    src="/images/icon/visi.png"
+                    alt="Check Circle Icon"
+                    width="64"
                     height="64"
                     style={{
                       borderRadius: '50%',
@@ -193,8 +193,8 @@ export default function About() {
                     }}
                   />
                 </div>
-                  <h5>Kualitas unggul dan berdaya saing</h5>
-                  <p>Mewujudkan pendidikan yang berkualitas guna mencetak generasi mulia, unggul, berdaya saing dan berdampak bagi masyarakat</p>
+                <h5>Kualitas unggul dan berdaya saing</h5>
+                <p>Mewujudkan pendidikan yang berkualitas guna mencetak generasi mulia, unggul, berdaya saing dan berdampak bagi masyarakat</p>
               </div>
             </div>
 
@@ -203,10 +203,10 @@ export default function About() {
               <div className="misi-grid">
                 <div className="misi-card">
                   <div className="card-icon">
-                    <img 
-                      src="/images/icon/misi-1.png" 
-                      alt="Check Circle Icon" 
-                      width="64" 
+                    <img
+                      src="/images/icon/misi-1.png"
+                      alt="Check Circle Icon"
+                      width="64"
                       height="64"
                       style={{
                         borderRadius: '50%',
@@ -220,10 +220,10 @@ export default function About() {
 
                 <div className="misi-card">
                   <div className="card-icon">
-                    <img 
-                      src="/images/icon/misi-2.png" 
-                      alt="Check Circle Icon" 
-                      width="64" 
+                    <img
+                      src="/images/icon/misi-2.png"
+                      alt="Check Circle Icon"
+                      width="64"
                       height="64"
                       style={{
                         borderRadius: '50%',
@@ -237,10 +237,10 @@ export default function About() {
 
                 <div className="misi-card">
                   <div className="card-icon">
-                    <img 
-                      src="/images/icon/misi-3.png" 
-                      alt="Check Circle Icon" 
-                      width="64" 
+                    <img
+                      src="/images/icon/misi-3.png"
+                      alt="Check Circle Icon"
+                      width="64"
                       height="64"
                       style={{
                         borderRadius: '50%',
@@ -252,14 +252,14 @@ export default function About() {
                   <p>Membangun ekosistem pendidikan yang mendorong daya juang, pemikiran kritis, serta inovasi</p>
                 </div>
               </div>
-              
+
               <div className="misi-grid misi-grid-centered">
                 <div className="misi-card">
                   <div className="card-icon">
-                    <img 
-                      src="/images/icon/misi-4.png" 
-                      alt="Check Circle Icon" 
-                      width="64" 
+                    <img
+                      src="/images/icon/misi-4.png"
+                      alt="Check Circle Icon"
+                      width="64"
                       height="64"
                       style={{
                         borderRadius: '50%',
@@ -273,10 +273,10 @@ export default function About() {
 
                 <div className="misi-card">
                   <div className="card-icon">
-                    <img 
-                      src="/images/icon/misi-5.png" 
-                      alt="Check Circle Icon" 
-                      width="64" 
+                    <img
+                      src="/images/icon/misi-5.png"
+                      alt="Check Circle Icon"
+                      width="64"
                       height="64"
                       style={{
                         borderRadius: '50%',
@@ -313,12 +313,14 @@ export default function About() {
               <img src="/images/ceo-ikram.jpg" alt="CEO Ikram Academy" />
             </div>
             <div className="expert-text">
-              <h3>Menjadi Mitra Pilihan Terbaik Anda!</h3>
+              <h3>Profesional Bersertifikasi, Solusi Pelatihan Terpercaya</h3>
               <p>
-                ​Kami berkomitmen menjadi mitra terpercaya dalam mewujudkan pendidikan berkualitas yang menghasilkan individu unggul, berdaya saing, dan berdampak positif bagi masyarakat. Melalui pelatihan, konsultasi, dan asesmen inovatif yang mudah diakses, kami membangun ekosistem pendidikan yang mendorong daya juang, pemikiran kritis, serta inovasi. Program kami dirancang untuk membentuk karakter mulia, profesional, dan berintegritas, mempersiapkan individu kompeten yang siap bersaing di dunia industri.
+                Didukung oleh tenaga ahli bersertifikasi dan berpengalaman, kami hadir untuk memberikan pelatihan berkualitas tinggi yang relevan dengan kebutuhan dunia industri dan profesional masa kini. Setiap program dirancang secara komprehensif, memadukan teori dan praktik untuk menghasilkan peserta yang siap bersaing dan unggul di bidangnya.
+                <br /> <br />
+                Dengan pendekatan yang interaktif, materi yang terstruktur, serta komitmen pada hasil nyata, kami menjadi pilihan tepat bagi individu maupun institusi yang mencari mitra pengembangan SDM yang handal, terpercaya, dan visioner.
               </p>
               <div className="expert-signature">
-                <h4>CEO of Ikram Academy Indonesia</h4>
+                <h4>Ikram Academy Indonesia</h4>
                 {/* <span>CEO of Ikram Academy Indonesia</span> */}
               </div>
             </div>
@@ -521,7 +523,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            
+
             <div className="year-section">
               <h4>2023</h4>
               <div className="agenda-grid">
