@@ -76,7 +76,7 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="nav-links">
             <Link to="/" className={isActive("/") ? "active" : ""}>Beranda</Link>
-            <Link to="/pelatihan" className={isPelatihanActive() ? "active" : ""}>Pelatihan</Link>
+            <Link to="/pelatihan" className={isPelatihanActive() ? "active" : ""}>Layanan</Link>
             <Link to="/about" className={isActive("/about") ? "active" : ""}>Tentang Ikram</Link>
             <Link to="/artikel" className={isActive("/artikel") ? "active" : ""}>Artikel</Link>
             <Link to="https://wa.me/6285183198360" className="btn btn-outline desktop-only">
@@ -124,7 +124,7 @@ export default function Navbar() {
           </Link>
           
           <Link to="/pelatihan" className={isPelatihanActive() ? "active" : ""}>
-            <span>Pelatihan</span>
+            <span>Layanan</span>
             <svg className="nav-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path d="M4.16669 10H15.8334M15.8334 10L10.8334 5M15.8334 10L10.8334 15" stroke="currentColor" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
