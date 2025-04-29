@@ -14,6 +14,7 @@ import styles from "~/styles/global.css";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
+  { rel: "icon", href: "/favicon.ico", type: "image/x-icon" }
 ];
 
 export function ErrorBoundary() {
