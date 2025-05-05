@@ -376,7 +376,7 @@ export default function TrainingDetail() {
                           </svg>
                           Sertifikat
                         </div>
-                        <div className="stat-value">Sertifikat Ikram Academy</div>
+                        <div className="stat-value">Sertifikat Ikram</div>
                       </div>
                     </div>
 

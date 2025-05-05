@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { getTrainingPrograms4 } from "~/utils/supabase.server";
+import { getTrainingPrograms4, supabase } from "~/utils/supabase.server";
 import type { TrainingProgram } from "~/utils/supabase.server";
+import type { Partner } from "~/services/partners.server";
 
 export const links = () => [{ rel: "stylesheet", href: styles }];
 
@@ -17,16 +18,35 @@ const truncateText = (text: string, maxLength: number = 120) => {
 };
 
 export async function loader({ request }: LoaderFunctionArgs) {
+  // Fetch training programs
   const { programs: trainings } = await getTrainingPrograms4();
-  return json({ trainings });
+  
+  // Fetch partners data from Supabase
+  const { data: partners, error } = await supabase
+    .from('partners')
+    .select('*')
+    .order('order_number', { ascending: true })
+    .eq('is_active', true);
+    
+  if (error) {
+    console.error("Error fetching partners:", error);
+    return json({ trainings, partners: [] });
+  }
+  
+  return json({ trainings, partners: partners || [] });
 }
 
 type LoaderData = {
   trainings: TrainingProgram[];
+  partners: Partner[];
 };
 
 export default function About() {
-  const { trainings } = useLoaderData<typeof loader>() as LoaderData;
+  const { trainings, partners } = useLoaderData<typeof loader>() as LoaderData;
+  
+  // Split partners array into two rows for the slider
+  const partnersFirstRow = partners.slice(0, Math.ceil(partners.length / 2));
+  const partnersSecondRow = partners.slice(Math.ceil(partners.length / 2));
 
   useEffect(() => {
     const sections = ['nilai-ikram', 'tenaga-ahli', 'program', 'sejarah', 'mitra'];
@@ -111,9 +131,9 @@ export default function About() {
           <h1>
             Dari Akhlak hingga Teknologi:
             <br />
-            Pelatihan Terintegrasi untuk
+            <pre />Pelatihan Terintegrasi untuk
             <br />
-            Pertumbuhan Optimal
+            <pre />Pertumbuhan Optimal
           </h1>
         </div>
       </section>
@@ -294,7 +314,7 @@ export default function About() {
       </section>
 
       {/* Quote Section */}
-      <section className="quote">
+      <section className="quote mobile-friendly-quote">
         <div className="container">
           <blockquote>
             <p>"The future belongs to those who learn more skills and combine them in creative ways."</p>
@@ -304,7 +324,7 @@ export default function About() {
       </section>
 
       {/* Expert Section */}
-      <section className="expert" id="tenaga-ahli">
+      <section className="expert mobile-friendly-expert" id="tenaga-ahli">
         <div className="container">
           <h2>Tenaga Ahli</h2>
           <div className="title-underline"></div>
@@ -329,7 +349,7 @@ export default function About() {
       </section>
 
       {/* Programs Section */}
-      <section className="programs" id="program">
+      <section className="programs mobile-friendly-program" id="program">
         <div className="container">
           <h2>Program Ikram</h2>
           <div className="title-underline"></div>
@@ -357,7 +377,7 @@ export default function About() {
       </section>
 
       {/* History Section */}
-      <section className="history" id="sejarah">
+      <section className="history mobile-friendly-history" id="sejarah">
         <div className="container">
           <div className="history-header">
             <h2>Sejarah Ikram</h2>
@@ -408,7 +428,7 @@ export default function About() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="portfolio" id="mitra">
+      <section className="portfolio mobile-friendly-portfolio" id="mitra">
         <div className="container">
           <div className="portfolio-header">
             <span className="subtitle">Klien & Mitra</span>
@@ -421,11 +441,50 @@ export default function About() {
               <h3>Mitra Kami</h3>
               <div className="red-line"></div>
             </div>
-            <div className="partners-grid">
-              <div className="partners-image">
-                <img src="/images/partners/Mitra.png" alt="Semua Mitra Ikram Academy" />
+            
+            {partners && partners.length > 0 ? (
+              <div className="partners-slider">
+                <div className="partners-slider-row">
+                  <div className="partners-track">
+                    {/* Menggandakan logo partner untuk efek scroll tak berujung */}
+                    {partnersFirstRow.map((partner) => (
+                      <div key={partner.id} className="partner-logo">
+                        <img src={partner.image_url} alt={partner.name} />
+                      </div>
+                    ))}
+                    {/* Duplicate untuk efek loop */}
+                    {partnersFirstRow.map((partner) => (
+                      <div key={`dup-${partner.id}`} className="partner-logo">
+                        <img src={partner.image_url} alt={partner.name} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="partners-slider-row reverse">
+                  <div className="partners-track">
+                    {/* Menggandakan logo partner untuk efek scroll tak berujung */}
+                    {partnersSecondRow.map((partner) => (
+                      <div key={partner.id} className="partner-logo">
+                        <img src={partner.image_url} alt={partner.name} />
+                      </div>
+                    ))}
+                    {/* Duplicate untuk efek loop */}
+                    {partnersSecondRow.map((partner) => (
+                      <div key={`dup-${partner.id}`} className="partner-logo">
+                        <img src={partner.image_url} alt={partner.name} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="partners-grid">
+                <div className="partners-image">
+                  <img src="/images/partners/Mitra.png" alt="Semua Mitra Ikram Academy" />
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="agenda-section">

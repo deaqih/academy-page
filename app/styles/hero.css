@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  background: none;
 }
 
 .hero-container {
@@ -709,7 +710,18 @@
 
 /* Remove hero-background as it's no longer needed */
 .hero-background {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 .hero-actions {
@@ -1456,5 +1468,412 @@
   }
   100% {
     transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+/* Modern Mobile Hero Styles */
+.modern-mobile-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-mobile-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.05));
+  z-index: 1;
+}
+
+.modern-mobile-hero .hero-container {
+  position: relative;
+  z-index: 2;
+}
+
+.modern-mobile-hero .banner-content h1 {
+  font-size: 32px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.8));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modern-mobile-hero .banner-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-bottom: 24px;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.modern-mobile-hero .hero-actions .btn {
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border-width: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modern-mobile-hero .hero-actions .btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.modern-mobile-hero .nav-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.modern-mobile-hero .nav-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.modern-mobile-hero .hero-image img {
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: perspective(800px) rotateY(-8deg);
+  transition: all 0.5s ease;
+}
+
+.modern-mobile-hero .particles .particle {
+  filter: blur(3px);
+}
+
+/* Modern Mobile Stats Styles */
+.modern-mobile-stats {
+  padding: 24px 0;
+  margin-top: -20px;
+  position: relative;
+  z-index: 10;
+}
+
+.modern-mobile-stats .stats-container {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 16px;
+}
+
+.modern-mobile-stats .stat-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.modern-mobile-stats .stat-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.modern-mobile-stats .stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0056b3, #0085ff);
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.modern-mobile-stats .stat-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: white;
+}
+
+.modern-mobile-stats .stat-content {
+  flex-grow: 1;
+}
+
+.modern-mobile-stats .stat-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1A202C;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .modern-mobile-hero .banner-content h1 {
+    font-size: 28px;
+  }
+  
+  .modern-mobile-hero .banner-content p {
+    font-size: 15px;
+  }
+  
+  .modern-mobile-hero .hero-actions .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  
+  .modern-mobile-stats .stats-container {
+    padding: 12px;
+    margin: 0 12px;
+  }
+  
+  .modern-mobile-stats .stat-item {
+    padding: 10px 12px;
+  }
+  
+  .modern-mobile-stats .stat-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .modern-mobile-stats .stat-label {
+    font-size: 13px;
+  }
+}
+
+/* Hero Background Slider Styles */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 40.57%; /* 779/1920 = 0.4057 atau 40.57% untuk mempertahankan aspek rasio 1920x779 */
+  overflow: hidden;
+}
+
+.hero-slider-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Slider Navigation */
+.slider-navigation {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.slider-navigation.left {
+  left: 30px;
+}
+
+.slider-navigation.right {
+  right: 30px;
+}
+
+.nav-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button svg {
+  stroke: white;
+  width: 24px;
+  height: 24px;
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: scale(1.05);
+}
+
+.nav-button:active {
+  transform: scale(0.95);
+}
+
+/* Slider Indicators */
+.slider-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator-dot.active {
+  background-color: white;
+  width: 30px;
+  border-radius: 10px;
+}
+
+.indicator-dot:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Animation Classes */
+.slide-in-next {
+  animation: slideInNext 0.5s forwards;
+}
+
+.slide-in-prev {
+  animation: slideInPrev 0.5s forwards;
+}
+
+@keyframes slideInNext {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInPrev {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 1200px) {
+  .hero {
+    padding-bottom: 45%; /* Sedikit lebih tinggi untuk layar kecil */
+  }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    padding-bottom: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-bottom: 56.25%; /* 16:9 aspect ratio for tablets */
+  }
+  
+  .slider-navigation.left {
+    left: 15px;
+  }
+  
+  .slider-navigation.right {
+    right: 15px;
+  }
+  
+  .nav-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .indicator-dot {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .indicator-dot.active {
+    width: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-bottom: 66.67%; /* 3:2 aspect ratio for mobile */
+  }
+  
+  .slider-navigation.left {
+    left: 10px;
+  }
+  
+  .slider-navigation.right {
+    right: 10px;
+  }
+  
+  .nav-button {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .nav-button svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .indicator-dot {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .indicator-dot.active {
+    width: 20px;
   }
 } 

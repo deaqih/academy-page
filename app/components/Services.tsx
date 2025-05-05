@@ -1,4 +1,6 @@
 import type { Article, TrainingProgram } from "~/utils/supabase.server";
+import type { Partner } from "~/services/partners.server";
+import { useEffect, useRef, useState } from "react";
 import styles from "~/styles/services.css";
 import { Link } from "@remix-run/react";
 
@@ -8,9 +10,14 @@ interface ServicesProps {
   articles: Article[];
   trainings: TrainingProgram[];
   totalCount: number;
+  partners: Partner[];
 }
 
-export default function Services({ articles, trainings, totalCount }: ServicesProps) {
+export default function Services({ articles, trainings, totalCount, partners }: ServicesProps) {
+  // Split partners array into two rows (if partners exist)
+  const partnersFirstRow = partners?.slice(0, Math.ceil((partners?.length || 0) / 2)) || [];
+  const partnersSecondRow = partners?.slice(Math.ceil((partners?.length || 0) / 2)) || [];
+  
   return (
     <>
       <section className="services">
@@ -221,11 +228,49 @@ export default function Services({ articles, trainings, totalCount }: ServicesPr
             <h2>Mitra Kami</h2>
           </div>
 
-          <div className="partners-grid">
-            <div className="partner-logo">
-              <img src="/images/partners/Mitra.png" alt="Mitra" />
+          {partners && partners.length > 0 ? (
+            <div className="partners-slider">
+              <div className="partners-slider-row">
+                <div className="partners-track">
+                  {/* Menggandakan logo partner untuk efek scroll tak berujung */}
+                  {partnersFirstRow.map((partner) => (
+                    <div key={partner.id} className="partner-logo">
+                      <img src={partner.image_url} alt={partner.name} />
+                    </div>
+                  ))}
+                  {/* Duplicate untuk efek loop */}
+                  {partnersFirstRow.map((partner) => (
+                    <div key={`dup-${partner.id}`} className="partner-logo">
+                      <img src={partner.image_url} alt={partner.name} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="partners-slider-row reverse">
+                <div className="partners-track">
+                  {/* Menggandakan logo partner untuk efek scroll tak berujung */}
+                  {partnersSecondRow.map((partner) => (
+                    <div key={partner.id} className="partner-logo">
+                      <img src={partner.image_url} alt={partner.name} />
+                    </div>
+                  ))}
+                  {/* Duplicate untuk efek loop */}
+                  {partnersSecondRow.map((partner) => (
+                    <div key={`dup-${partner.id}`} className="partner-logo">
+                      <img src={partner.image_url} alt={partner.name} />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="partners-grid">
+              <div className="partner-logo">
+                <img src="/images/partners/Mitra.png" alt="Mitra" />
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </>

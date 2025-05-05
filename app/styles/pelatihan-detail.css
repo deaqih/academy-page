@@ -40,7 +40,7 @@
 /* Hero Section with gradient overlay */
 .training-hero {
   width: 100%;
-  height: 550px;
+  height: 480px;
   padding-top: 130px;
   padding-bottom: 48px;
   margin: 0 auto;
@@ -87,11 +87,10 @@
 
 .training-breadcrumb a,
 .training-breadcrumb span {
-  color: #338ABE;
-  font-size: 20px;
+  color: var(--primary-color);
+  font-size: 14px;
   text-decoration: none;
   font-weight: 500;
-  font-family: 'Poppins', sans-serif;
 }
 
 .training-breadcrumb a {
@@ -124,7 +123,7 @@
 }
 
 .training-hero-title {
-  font-size: 55px;
+  font-size: 42px;
   font-weight: 700;
   color: var(--text-primary);
   margin: 0;
@@ -132,10 +131,9 @@
   max-width: 800px;
   margin: 0 auto;
   position: relative;
-  font-family: 'Poppins', sans-serif;
 }
 
-/* .training-hero-title::after {
+.training-hero-title::after {
   content: '';
   display: block;
   width: 80px;
@@ -143,7 +141,7 @@
   background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
   margin: 24px auto 0;
   border-radius: 2px;
-} */
+}
 
 /* Training Detail Content */
 .training-detail {
@@ -928,7 +926,7 @@
 @media (max-width: 768px) {
   .training-hero {
     height: auto;
-    min-height: 400px;
+    min-height: 320px;
     padding-top: 120px;
     padding-bottom: 80px;
   }

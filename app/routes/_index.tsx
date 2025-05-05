@@ -1,72 +1,34 @@
-import type { MetaFunction } from "@remix-run/node";
-import Navbar from "~/components/Navbar";
+import { json, type LoaderFunction, type MetaFunction } from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import Hero from "~/components/Hero";
 import Services from "~/components/Services";
+import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
-import { links as navbarLinks } from "~/components/Navbar";
-import { links as heroLinks } from "~/components/Hero";
-import { json, redirect } from "@remix-run/node";
-import type { LoaderFunction, ActionFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { supabase, type Article, type TrainingProgram } from "~/utils/supabase.server";
+import { supabase } from "~/utils/supabase.server";
 
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Ikram Academy - Tingkatkan Keahlian, Wujudkan Impian" },
-    { name: "description", content: "Pusat pengembangan sumber daya manusia yang menghasilkan tenaga kerja profesional dan berkualitas" },
-  ];
-};
-
-export const links = () => [...navbarLinks(), ...heroLinks()];
-
+// Import types for Banner
 export interface Banner {
   id: number;
   title: string;
   description: string;
   image: string;
+  backgroundColor?: string;
+  textColor?: string;
+  imageBgColor?: string;
 }
 
-export type LoaderData = {
-  articles: Article[];
-  trainings: TrainingProgram[];
-  totalCount: number;
-  currentBanner: number;
-  banners: Banner[];
-};
-
-const BANNERS: Banner[] = [
-  {
-    id: 1,
-    title: "Unggul dalam Akhlak, Produktif dalam ilmu pengetahuan dan teknologi",
-    description: "",
-    image: "/images/hero-image.png"
-  },
-  {
-    id: 2,
-    title: "Tingkatkan **Keahlian**, Wujudkan **Impian**!",
-    description: "Ikram Academy hadir sebagai tempat pelatihan terbaik untuk membantumu meningkatkan keahlian dan mewujudkan impian. Dengan program pembelajaran yang terarah dan instruktur berpengalaman, kami siap mendampingi setiap langkahmu menuju masa depan yang lebih cerah.",
-    image: "/images/hero-image2.png"
-  }
-];
-
-export const loader: LoaderFunction = async ({ request }) => {
-  // Get current banner index from URL
-  const url = new URL(request.url);
-  const currentBanner = parseInt(url.searchParams.get("banner") || "0");
-
-  // Fetch articles
-  const { data: articles, error: articlesError } = await supabase
+// Declare import types for services
+export async function getArticles({ limit }: { limit: number }) {
+  const { data } = await supabase
     .from('articles')
     .select('*')
     .order('publish_date', { ascending: false })
-    .limit(3);
+    .limit(limit);
+  return data || [];
+}
 
-  if (articlesError) {
-    throw new Error('Error fetching articles');
-  }
-
-  // Fetch training programs
-  const { data: trainings, error: trainingsError, count } = await supabase
+export async function getTrainingPrograms({ limit }: { limit: number }) {
+  const { data, count } = await supabase
     .from('trainings')
     .select(`
       id,
@@ -83,44 +45,91 @@ export const loader: LoaderFunction = async ({ request }) => {
       instructor_id
     `, { count: 'exact' })
     .order('created_at', { ascending: false })
-    .limit(3);
+    .limit(limit);
+  return { data: data || [], count: count || 0 };
+}
 
-  if (trainingsError) {
-    throw new Error('Error fetching training programs');
-  }
+export async function getPartners() {
+  const { data } = await supabase
+    .from('partners')
+    .select('*')
+    .order('order_number', { ascending: true })
+    .eq('is_active', true);
+  return data || [];
+}
 
-  return json<LoaderData>({ 
-    articles,
-    trainings: trainings || [],
-    totalCount: count || 0,
-    currentBanner,
-    banners: BANNERS
-  });
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Ikram Academy Indonesia" },
+    { name: "description", content: "Ikram Academy Indonesia - Training, Consulting, and Assessment" },
+  ];
 };
 
-export const action: ActionFunction = async ({ request }) => {
-  const formData = await request.formData();
-  const action = formData.get("action");
-  const currentBanner = parseInt(formData.get("currentBanner") as string);
+interface LoaderData {
+  articles: any[];
+  trainings: any[];
+  totalCount: number;
+  currentBanner: number;
+  banners: Banner[];
+  partners: any[];
+}
 
-  let nextBanner;
-  if (action === "next") {
-    nextBanner = (currentBanner + 1) % BANNERS.length;
-  } else {
-    nextBanner = (currentBanner - 1 + BANNERS.length) % BANNERS.length;
+export const loader: LoaderFunction = async ({ request }) => {
+  try {
+    // Get current banner index from URL
+    const url = new URL(request.url);
+    const currentBanner = parseInt(url.searchParams.get("banner") || "0");
+
+    // Fetch banners
+    const { data: banners, error: bannersError } = await supabase
+      .from('banner')
+      .select('*')
+      .order('order_number', { ascending: true });
+
+    if (bannersError) {
+      throw new Error('Error fetching banners');
+    }
+
+    const [articles, trainings, partners] = await Promise.all([
+      getArticles({ limit: 3 }),
+      getTrainingPrograms({ limit: 3 }),
+      getPartners()
+    ]);
+
+    return json<LoaderData>({
+      articles: articles || [],
+      trainings: trainings?.data || [],
+      totalCount: trainings?.count || 0,
+      currentBanner,
+      banners: banners || [],
+      partners: partners || []
+    });
+  } catch (error) {
+    console.error("Error in homepage loader:", error);
+    return json<LoaderData>({
+      articles: [],
+      trainings: [],
+      totalCount: 0,
+      currentBanner: 0,
+      banners: [],
+      partners: []
+    });
   }
-
-  return redirect(`/?banner=${nextBanner}`);
 };
 
 export default function Index() {
-  const { articles, trainings, totalCount, currentBanner, banners } = useLoaderData<LoaderData>();
+  const { articles, trainings, totalCount, currentBanner, banners, partners } = useLoaderData<LoaderData>();
   
   return (
     <main>
       <Navbar />
       <Hero currentBanner={currentBanner} banners={banners} />
-      <Services articles={articles} trainings={trainings} totalCount={totalCount} />
+      <Services 
+        articles={articles} 
+        trainings={trainings} 
+        totalCount={totalCount} 
+        partners={partners} 
+      />
       <Footer />
     </main>
   );

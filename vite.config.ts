@@ -10,7 +10,7 @@ declare module "@remix-run/node" {
 
 export default defineConfig({
   server: {
-    allowedHosts: ['ikramacademy.id']
+    allowedHosts: ['ikramacademy.id', 'www.ikramacademy.id']
   },
   plugins: [
     remix({

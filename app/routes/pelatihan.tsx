@@ -236,7 +236,7 @@ export default function Pelatihan() {
             <p>Tingkatkan keterampilan dan kompetensi Anda dengan program pelatihan terbaik dari Ikram Academy!</p>
           </div>
 
-          <div className="top-filters">
+          {/* <div className="top-filters">
             <div className="top-search">
               <input 
                 type="text" 
@@ -272,7 +272,7 @@ export default function Pelatihan() {
                 <option value="oldest">Terlama</option>
               </select>
             </div>
-          </div>
+          </div> */}
 
           <div className="pelatihan-content">
             <div className={`categories-sidebar ${isFilterVisible ? 'mobile-visible' : ''}`}>
